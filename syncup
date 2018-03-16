@@ -1,0 +1,4 @@
+#!/bin/sh
+rsync --archive lib etc public templates oltcal@james:rtfb
+ssh oltcal@james pkill -f rtfb
+ssh oltcal@james /home/oltcal/rtfb/bin/start.sh

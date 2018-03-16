@@ -1,0 +1,4 @@
+Data::Processor@0.4.2
+IO::Socket::SSL
+Mojolicious
+Mojo::SQLite

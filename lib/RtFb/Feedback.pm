@@ -1,9 +1,10 @@
 package RtFb::Feedback;
 
 use Mojo::Base 'Mojolicious::Controller';
-use Mojo::SQLite;
-use Mojo::JSON qw(encode_json);
-use Encode qw/encode decode/;
+#use Mojo::SQLite;
+#use Mojo::JSON qw(encode_json);
+#use Encode qw/encode decode/;
+use Mojo::Util qw/md5_sum/;
 use Mojo::Exception;
 
 =head1 NAME
@@ -28,7 +29,6 @@ has data => sub {
 has cfg => sub {
     shift->app->config->cfgHash;
 };
-
 
 sub store {
     my $c = shift;

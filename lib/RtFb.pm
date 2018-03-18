@@ -5,7 +5,7 @@ use RtFb::Config;
 use Mojo::SQLite;
 use Mojo::JSON qw(encode_json);
 use RtFb::Feedback;
-use Mojo::Util qw(sha1_sum b64_encode);
+use Mojo::Util qw(sha1_sum b64_encode md5_sum);
 # use RT;
 
 our $VERSION = "0.2.0";
@@ -66,6 +66,11 @@ has config => sub {
     );
 };
 
+sub md5Hash {
+    my $c        = shift;
+    my $ticketId = shift;
+    return md5_sum($ticketId . $c->app->config->cfgHash->{GENERAL}{secret});
+}
 
 sub startup {
     my $app = shift;
@@ -130,29 +135,29 @@ sub startup {
 
     $r->get('/about');
     
-    $r->get('/login' => sub {
-        my $c = shift;
-        $c->session('shopmode' => 1);
-        $c->session('login' => '');
-        $c->redirect_to('.')
-    });
+#    $r->get('/login' => sub {
+#        my $c = shift;
+#        $c->session('shopmode' => 1);
+#        $c->session('login' => '');
+#        $c->redirect_to('.')
+#    });
 
-    $r->get('/logout' => sub {
-        my $c = shift;
-        $c->session('shopmode' => 0);
-        $c->session('login' => '');
-        $c->redirect_to('.')
+    $r->get('/:ticket/:feedback/:md5' => sub {
+                my $c = shift;
+                my $ticketId = $c->param('ticket');
+                my $feedback = $c->param('feedback');
+                my $md5      = $c->param('md5');
+                my $check    = $c->app->md5Hash($ticketId);
+                
+                if ($md5 eq $check) {
+                    $c->stash('ticketId' => $ticketId);
+                    $c->stash('feedback' => $feedback);
+                    $c->render('feedback');
+                }
+                else {
+                    $c->render(text => '<h1>Unauthorized</h1>', status => 403);
+                }
     });
-
-    $r->get('/' => sub {
-        my $c = shift;
-        $c->stash('ORGANISATIONS' => $cfg->{ORGANISATIONS});
-        $c->stash('home' => $app->home);
-        $c->render('order');
-    });
-
-#    $r->get('/list')->to( controller=>'List', action=>'orderList');
-#    $r->get('/stats')->to( controller=>'Stats', action=>'statsPage');
 
 }
 

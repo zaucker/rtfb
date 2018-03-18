@@ -4,9 +4,9 @@ use Mojo::Base 'Mojolicious';
 use RtFb::Config;
 use Mojo::SQLite;
 use Mojo::JSON qw(encode_json);
-use RtFb::Order;
-use RtFb::List;
+use RtFb::Feedback;
 use Mojo::Util qw(sha1_sum b64_encode);
+# use RT;
 
 our $VERSION = "0.2.0";
 
@@ -29,6 +29,28 @@ Configure the mojolicious engine to run our application logic
 RtFb has all the attributes of L<Mojolicious> plus:
 
 =cut
+# initialize rt via $c->app->rtInit while processing
+# the request to make sure running RT db connections do not get
+# forked since mojolicious shares ALL filehandels between forks
+# which leads to confusion for the RT db connection.
+
+sub rtInit {
+    my $app = shift;
+    state $init;
+    if (not $init){
+        $app->log->debug('starting RT connection');
+        RT->LoadConfig();
+        RT->Init();
+
+        $app->log->debug('initialized');
+        require PicIt::Simple;
+        require PicIt::DataModel;
+        require RT::PICIT::AppDirect::TicketCreation;
+        require RT::PICIT::AppDirect::AssetCustomFieldSnapshot;
+        $app->log->debug('RT ready');
+        $init = 1;
+    }
+}
 
 =head2 config
 
@@ -42,32 +64,6 @@ has config => sub {
         app => $app,
         file => $ENV{RTFB_CFG} || $app->home->rel_file('etc/rtfb.cfg' )
     );
-};
-
-has sql => sub {
-    my $app = shift;
-    my $var = $app->home->rel_file('var');
-    -d $var or mkdir $var, 0700;
-    chmod 0700, $var;
-    my $sql = Mojo::SQLite->new($app->home->rel_file('var/rtfb.db' ));
-
-    $sql->options({
-        RaiseError => 1,
-        PrintError => 0,
-        AutoCommit => 1,
-        ShowErrorStatement => 1,
-        sqlite_unicode => 1,
-        FetchHashKeyName=>'NAME_lc',
-    });
-
-    $sql->migrations
-        ->name('rtfb')
-        ->from_data(__PACKAGE__,'setup.sql')
-        ->migrate;
-
-    $sql->db->dbh->do('PRAGMA foreign_keys = ON');
-
-    return $sql;
 };
 
 

@@ -1,20 +1,25 @@
 RtFb
-======
+===
 Version: 0.1.0
-Date: 2016-10-05
+Date: 2018-03-18
 
-The shop software used to sell the Oltner-Kalender.
+Request Tracker feedback form handler
 
 SETUP
 -----
+
+  * Copy etc/rft.cfg.dist to etc/rtfb.cfg and adapt file to your
+    environment.
+
+  * Install
 
   ./configure
   make
   make install
 
-
 RUNNING
 -------
+
 
 Run rtfb like this:
 
@@ -24,8 +29,6 @@ To run behind a reverse proxy, add the --proxy option
 
    bin/rtfb.pl daemon --proxy --mode=production --listen 'http://rtfb:3834'
 
-
-
 Enjoy!
 
-Tobias Oetiker <tobi@oetiker.ch>
+Fritz Zaucker <fritz.zaucker@oetiker.ch>

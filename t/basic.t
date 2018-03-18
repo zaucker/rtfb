@@ -7,6 +7,6 @@ use lib $FindBin::Bin.'/../lib';
 use Test::More;
 use Test::Mojo;
 
-use_ok 'RestGw';
+use_ok 'RtFb';
 
 done_testing();

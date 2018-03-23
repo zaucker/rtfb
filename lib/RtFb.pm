@@ -75,6 +75,7 @@ sub md5Hash {
 sub startup {
     my $app = shift;
     my $cfg = $app->config->cfgHash;
+    say "md5(111)=", $app->md5Hash(111);
     $app->commands->message("Usage:\n\n".$app->commands->extract_usage."\nCommands:\n\n");
     $app->secrets([$cfg->{GENERAL}{secret}]);
     $app->sessions->cookie_name('rtfb');
@@ -142,13 +143,15 @@ sub startup {
 #        $c->redirect_to('.')
 #    });
 
+    #    $r->get('/:ticket/:feedback/:md5' => sub {
     $r->get('/:ticket/:feedback/:md5' => sub {
                 my $c = shift;
                 my $ticketId = $c->param('ticket');
                 my $feedback = $c->param('feedback');
                 my $md5      = $c->param('md5');
                 my $check    = $c->app->md5Hash($ticketId);
-                
+
+                $md5 = $c->app->md5Hash($ticketId) ;               
                 if ($md5 eq $check) {
                     $c->stash('ticketId' => $ticketId);
                     $c->stash('feedback' => $feedback);

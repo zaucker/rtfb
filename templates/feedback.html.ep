@@ -1,5 +1,5 @@
 % layout 'default';
-% title 'Bestellung';
+% title 'Feedback';
 
 <div class="container">
   <div class="row">
@@ -10,38 +10,34 @@
       <a name="order-start"></a>
       <p class="flow-text">
         Waren Sie zufrieden mit der Antwort auf Ticket <%= $ticketId
-        %> (feedback=<%= $feedback %>)?
-          <a id="payform_btn" class="waves-effect waves-light btn right" href="#!">Abschicken</a>
-
+                                           %> (feedback=<%= $feedback %>)?
+      <div id="radio">
+        
+    <p>
+      <label>
+        <input name="group1" type="radio" id="good" checked />
+        <span>Zufrieden</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input name="group1" type="radio" id="ok" />
+        <span>Ok</span>
+      </label>
+    </p>
+    <p>
+      <label>
+        <input class="with-gap" name="group1" type="radio" id="bad" />
+        <span>Nicht zufrieden</span>
+      </label>
+    </p>
+</div>
+        <div class="input-field">
+          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <label for="textarea1">Weitere Angaben (optional)</label>
+        </div>
+    <a id="payform_btn" class="waves-effect waves-light btn right" href="#!">Abschicken</a>
       </form>
     </div>
   </div>
 </div>
-
-<!-- POPUPS -->
-
-<!--
-<div id="errorpop" class="modal">
-  <div class="modal-content">
-  </div>
-  <div class="modal-footer">
-    <a id="error_ok" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
-  </div>
-</div>
-
-<div id="busypop" class="valign-wrapper">
-  <div class="preloader-wrapper big active valign">
-    <div class="spinner-layer spinner-red">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
-     </div>
-  </div>
-</div>
-
-<script type="text/javascript" src="<%= url_for 'js/start.js' %>"></script>
--->

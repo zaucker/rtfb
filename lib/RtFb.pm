@@ -5,8 +5,9 @@ use RtFb::Config;
 use Mojo::SQLite;
 use Mojo::JSON qw(encode_json);
 use RtFb::Feedback;
-use Mojo::Util qw(sha1_sum b64_encode md5_sum);
-# use RT;
+use Mojo::Util qw(md5_sum dumper);
+use RT;
+use Digest::MD5 qw(md5_hex);
 
 our $VERSION = "0.2.0";
 
@@ -43,10 +44,6 @@ sub rtInit {
         RT->Init();
 
         $app->log->debug('initialized');
-        require PicIt::Simple;
-        require PicIt::DataModel;
-        require RT::PICIT::AppDirect::TicketCreation;
-        require RT::PICIT::AppDirect::AssetCustomFieldSnapshot;
         $app->log->debug('RT ready');
         $init = 1;
     }
@@ -66,44 +63,29 @@ has config => sub {
     );
 };
 
+has md5secret => sub {
+    RT->Config->Get("RtFb_FeedbackSecret");
+};
+
 sub md5Hash {
     my $c        = shift;
     my $ticketId = shift;
-    return md5_sum($ticketId . $c->app->config->cfgHash->{GENERAL}{secret});
+    return md5_hex($ticketId . $c->md5secret);
 }
 
 sub startup {
     my $app = shift;
     my $cfg = $app->config->cfgHash;
-    say "md5(111)=", $app->md5Hash(111);
+    say "md5(1)=", $app->md5Hash(1);
     $app->commands->message("Usage:\n\n".$app->commands->extract_usage."\nCommands:\n\n");
     $app->secrets([$cfg->{GENERAL}{secret}]);
     $app->sessions->cookie_name('rtfb');
-#    $app->plugin(
-#        StripePayment => {
-#            secret => $cfg->{GENERAL}{stripeSecretKey},
-#        }
-#    );
 
     my $r = $app->routes->under( sub {
         my $c = shift;
 
-        my $shopmode = $c->session('shopmode');
-        my $login = $c->session('login');
-        $c->stash('shopmode' => $shopmode);
-        $c->stash('login' => $login);
-
-        return 1 if !$shopmode or $login;
-
-        my ($user,$pass) = split /:/, ($c->req->url->to_abs->userinfo // ''), 2;
-        if ($pass and $user and sha1_sum($pass) eq ($cfg->{USERS}{$user} // '')){
-            $c->session('login' => $user);
-            return 1;
-        };
-        $c->res->headers->www_authenticate("Basic realm=rtfb");
-        $c->res->code(401);
-        $c->rendered;
-        return undef;
+        $c->app->rtInit();
+        return 1;
     });
 
     $app->hook(around_dispatch => sub {
@@ -134,32 +116,52 @@ sub startup {
         }
     });
 
-    $r->get('/about');
-    
-#    $r->get('/login' => sub {
-#        my $c = shift;
-#        $c->session('shopmode' => 1);
-#        $c->session('login' => '');
-#        $c->redirect_to('.')
-#    });
+    my $md5;
 
-    #    $r->get('/:ticket/:feedback/:md5' => sub {
-    $r->get('/:ticket/:feedback/:md5' => sub {
+    $r->get('/:ticket/:md5/:feedback' => sub {
                 my $c = shift;
                 my $ticketId = $c->param('ticket');
                 my $feedback = $c->param('feedback');
-                my $md5      = $c->param('md5');
                 my $check    = $c->app->md5Hash($ticketId);
+                $md5         = $c->param('md5');
 
-                $md5 = $c->app->md5Hash($ticketId) ;               
                 if ($md5 eq $check) {
+                    my $ticket = RT::Ticket->new(RT->SystemUser);
+                    $ticket->Load($ticketId);
+                    my $subject = $ticket->Subject;
+
+                    my $comment = $ticket->CustomFieldValues('Feedback Kommentar')->Next;
+                    $comment = $comment->Content if defined $comment;
+#                    warn "comment = ", dumper $comment // 'UNDEFINED';
                     $c->stash('ticketId' => $ticketId);
+                    $c->stash('subject'  => $subject);
+                    $c->stash('comment'  => ($comment // ''));
                     $c->stash('feedback' => $feedback);
                     $c->render('feedback');
                 }
                 else {
                     $c->render(text => '<h1>Unauthorized</h1>', status => 403);
                 }
+    });
+    $r->post('/saveFeedback' => sub {
+        my $c = shift;
+
+        my $feedback = $c->param('feedback');
+        my $comment  = $c->param('comment');
+        my $secret   = $c->param('secret');
+        my $ticketId = $c->param('ticketId');
+        my $check    = "xyz" . $c->app->md5Hash($ticketId);
+        my $authorized = $check eq $secret;
+        my $response = "feedback=$feedback, comment=$comment, secret=$secret, check=$check, ticketId=$ticketId, authorized=$authorized";
+
+        if ($authorized) {
+            my $ticket = RT::Ticket->new(RT->SystemUser);
+            $ticket->Load($ticketId);
+
+            my @ret = $ticket->AddCustomFieldValue(Field => 'Feedback Kommentar', Value => $comment);
+            warn "ret=", dumper \@ret;
+        }
+        $c->render(text => $response);
     });
 
 }

@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export RTHOME=$HOME/opt/picit/rt442
+
 PORT=$1
 if [ $PORT ]; then
     echo "Starting rtfb on port '$1'"

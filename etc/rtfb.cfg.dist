@@ -1,13 +1,9 @@
+// The functional config is in RT!
 {
     "GENERAL": {
         // the log file is only active in production mode
         "logFile": "/tmp/rtfb.log",
+	// only for app
         "secret": "mysecret",
     },
-    "ORGANISATIONS": [
-        {
-            "name": "Demo",
-            "email": "info@demo.ch",
-        },
-    ],
 }

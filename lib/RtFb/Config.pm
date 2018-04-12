@@ -84,26 +84,10 @@ has schema => sub {
                 },
                 secret => {
                     validator => $string,
-                    description => 'used to sign the cookie saveing the state of the app'
+                    description => 'used to sign the cookie saving the state of the app'
                 },
-#                test => {
-#                    description => 'placeholder'
-#                },
             },
         },
-        # ORGANISATIONS => {
-        #     array => 1,
-        #     description => 'list organisations',
-        #     members => {
-        #         name => {
-        #             description => 'name of the organisation',
-        #             validator => $string
-        #         },
-        #         email => {
-        #             description => 'email for this organisation',
-        #         },
-        #     },
-        # },
     };
 };
 

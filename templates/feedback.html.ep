@@ -1,42 +1,50 @@
 % layout 'default';
 % title 'Feedback';
 
+% my $checked1 = $feedback eq 'good' ? 'checked' : '';
+% my $checked2 = $feedback eq 'ok'   ? 'checked' : '';
+% my $checked3 = $feedback eq 'bad'  ? 'checked' : '';
+%
 <div class="container">
   <div class="row">
-  <div class="col s12">
+    <div class="col s12">
       <br/>
 
-      <form id="orderform">
-      <a name="order-start"></a>
-      <p class="flow-text">
-        Waren Sie zufrieden mit der Antwort auf Ticket <%= $ticketId
-                                           %> (feedback=<%= $feedback %>)?
-      <div id="radio">
+      <form id="orderform" action="/saveFeedback" method="post">
+        <input type="hidden" name="secret" value="<%= "xyz$md5" %>">
+        <input type="hidden" name="ticketId" value="<%= $ticketId %>">
+
+        <p class="flow-text">
+          Waren Sie zufrieden mit der Antwort auf<br />
+          Ticket <%= $ticketId %> (<%= $subject %>)?</p>
+
+        <div id="radio">
         
-    <p>
-      <label>
-        <input name="group1" type="radio" id="good" checked />
-        <span>Zufrieden</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input name="group1" type="radio" id="ok" />
-        <span>Ok</span>
-      </label>
-    </p>
-    <p>
-      <label>
-        <input class="with-gap" name="group1" type="radio" id="bad" />
-        <span>Nicht zufrieden</span>
-      </label>
-    </p>
-</div>
+          <p>
+            <label>
+              <input name="feedback" type="radio" value="good" <%= $checked1 %> />
+              <span>Zufrieden</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="feedback" type="radio" value="ok" <%= $checked2 %> />
+              <span>Ok</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="feedback" type="radio" value="bad"<%= $checked3 %>  />
+              <span>Nicht zufrieden</span>
+            </label>
+          </p>
+        </div>
+
         <div class="input-field">
-          <textarea id="textarea1" class="materialize-textarea"></textarea>
+          <textarea name="comment" id="textarea1" class="materialize-textarea"><%= $comment %></textarea>
           <label for="textarea1">Weitere Angaben (optional)</label>
         </div>
-    <a id="payform_btn" class="waves-effect waves-light btn right" href="#!">Abschicken</a>
+        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f5671">Abschicken</button>
       </form>
     </div>
   </div>

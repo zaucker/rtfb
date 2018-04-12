@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
     <meta property="og:site_name" content="SwitchPlus Feedback"/>
     <meta property="og:url" content="https://www.switchplus.ch" />
         <meta property="og:description" content="Feedback form for support by SwitchPlus" />
     <meta property="og:title" content="SwitchPlus Feedback"/>
     <meta property="og:type"  content="website"/>
     <meta property="fb:app_id" content="1241793474840937766"/>
-    <title><%= title %> - SwitchPlus</title>
+<meta property="og:image" content="https://www.switchplus.ch/wp-content/uploads/cropped-favicon-switchplus.png" />
+<meta property="og:image:width" content="512" />
+<meta property="og:image:height" content="512" />
+<meta property="og:locale" content="de_DE" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="switchplus.ch | Home" />
+<meta property="og:description" content="switchplus ist Experte für die Internet-Präsenz und Domain-Namen. Das Angebot richtet sich an Unternehmen und Privatpersonen." />
+<meta property="og:url" content="https://www.switchplus.ch/" />
+<meta property="og:site_name" content="switchplus.ch" />
+    <title>switchplus.ch | <%= title %></title>
     <!--Import Google Icon Font-->
     <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<link rel='stylesheet' id='Calenso-frontend-css'  href='https://www.switchplus.ch/wp-content/plugins/calenso-master/assets/css/frontend.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='wf_magnific_popup_styles-css'  href='https://www.switchplus.ch/wp-content/plugins/wf-magnific-lightbox/css/magnific-popup.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='wfml_custom-css'  href='https://www.switchplus.ch/wp-content/plugins/wf-magnific-lightbox/css/wfml-custom.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='_presence-fonts-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C400i%2C500%2C700%2C900%7CMontserrat%3A700i&#038;subset=latin%2Clatin-ext&#038;ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='https://www.switchplus.ch/wp-includes/css/dashicons.min.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='_presence-style-css'  href='https://www.switchplus.ch/wp-content/themes/new-switchplus/style.min.css?ver=1.0.36' type='text/css' media='all' />
+<link rel='stylesheet' id='tf-compiled-options-wdc-options-css'  href='https://www.switchplus.ch/wp-content/uploads/titan-framework-wdc-options-css.css?ver=4.9.4' type='text/css' media='all' />
+<link rel='stylesheet' id='tablepress-default-css'  href='https://www.switchplus.ch/wp-content/plugins/tablepress/css/default.min.css?ver=1.9' type='text/css' media='all' />
+<link rel='stylesheet' id='wdcGoogleFonts-css'  href='//fonts.googleapis.com/css?family=Poppins%3A300&#038;ver=4.9.4' type='text/css' media='all' />
+<!--
+-->
+    <style type='text/css'>#masthead{background-image:url('https://www.switchplus.ch/wp-content/uploads/Rectangle-4.jpg');}
+</style>
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="<%= url_for '/css/materialize.min.css' %>"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="<%= url_for '/css/materialize.css' %>"  media="screen,projection"/>
 
     <link type="text/css" rel="stylesheet" href="<%= url_for '/css/custom.css' %>" />
 
@@ -29,32 +54,39 @@
     });
     </script>
   </head>
-  <body>
+  <body class="home page-template-default page page-id-66 wp-custom-logo group-blog no-sidebar _presence-front-page">
 
-  <nav>
-    <div class="nav-wrapper grey">
-      <div class="container">
-         SwitchPlus
-      </div>
+<div id="page" class="site">
+
+      <header id="masthead" class="site-header" role="banner">
+
+            <div class="site-branding">
+            <div class="site-branding-container">
+				                    <div class="site-custom-logo">
+						<a href="https://www.switchplus.ch/" class="custom-logo-link" rel="home" itemprop="url"><img src="https://www.switchplus.ch/wp-content/uploads/switchplus-logo-300x42.png" class="custom-logo" alt="switchplus.ch" itemprop="logo"  data-copyright="" data-headline="switchplus-logo" data-description="" style="padding: 1em; background-color: white;" /></a>                    </div>
+				            </div>
+        </div><!-- .site-branding -->
+ </header>
+
+</div>
+<!-- END navigation-above/logo-2menus-changeonlogin -->
+
+    </header>
+
+
+<%= content %>
+
+<div id='footer' class='footer widgets-5'>
+  <footer class='site-footer'>
+    <div class='footer-top'><a href="https://www.switchplus.ch">Switchplus Homepage</a></div>
+    <div class='footer-btm'>            <div class="footer_widget footer_widget_5"><div id="text-1" class="widget widget_text">
+<div class="textwidget"><p>© 2018 switchplus ag</p>
+</div>
+</div>
+</div>
+</div>
+</footer>
     </div>
-  </nav>
-    <%= content %>
-    <footer class="page-footer grey">
-    <div class="container">
-<!--
-            <div class="row">
-              <div class="col s12">
-                <p class="grey-text text-lighten-4">Bla bla bla</p>
-              </div>
-              </div>
--->              
-          </div>
-      <div class="footer-copyright">
-        <div class="container">
-        Implementiert durch <a href="https://www.oetiker.ch">Oetiker+Partner AG</a>, Olten
-        </div>
-      </div>
-    </footer>
   </body>
 </html>
 

@@ -118,6 +118,7 @@ sub startup {
 
     my $md5;
 
+    # http://localhost:7867/21/717fe933bae09860276fda97cb6de238/good
     $r->get('/:ticket/:md5/:feedback' => sub {
                 my $c = shift;
                 my $ticketId = $c->param('ticket');
@@ -130,6 +131,27 @@ sub startup {
                     $ticket->Load($ticketId);
                     my $subject = $ticket->Subject;
 
+                    my @languages;
+                    my $userLang = $ticket->Requestors->UserMembersObj->First->Lang;
+                    push @languages, $userLang if $userLang;
+                    say "userLang=", ($userLang // 'undefined');
+                    my @acceptedLanguages = split(',', $c->req->headers->accept_language);
+                    my %lhash;
+                    for my $l (@acceptedLanguages) {
+                        $l =~ s/;q=.*//;
+                        $l =~ s/-.*//;
+                        next unless $l;
+                        push @languages, $l unless $lhash{$l};
+                        $lhash{$l} = 1;
+                    }
+                    for my $l (@languages) {
+                        next unless $l eq 'en' or $l eq 'de' or $l eq 'fr' or $l eq 'it';
+                        $userLang = $l;
+                        last;
+                    }
+                    say "languages=", join ', ', @languages;
+                    $userLang //= 'de';
+                    say "userLang=", ($userLang // 'undefined');
                     my $comment = $ticket->CustomFieldValues('Feedback Kommentar')->Next;
                     $comment = $comment->Content if defined $comment;
 #                    warn "comment = ", dumper $comment // 'UNDEFINED';
@@ -137,6 +159,7 @@ sub startup {
                     $c->stash('subject'  => $subject);
                     $c->stash('comment'  => ($comment // ''));
                     $c->stash('feedback' => $feedback);
+                    $c->stash('lang'     => $userLang);
                     $c->render('feedback');
                 }
                 else {

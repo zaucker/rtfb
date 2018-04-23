@@ -5,6 +5,48 @@
 % my $checked2 = $feedback eq 'ok'   ? 'checked' : '';
 % my $checked3 = $feedback eq 'bad'  ? 'checked' : '';
 %
+%
+% my %t = (
+%     question => {
+%         de => "Waren Sie zufrieden mit der Antwort auf <br />Ticket $ticketId ($subject)?",
+%     },
+%     selection => [
+%         {
+%             text => {
+%                 de => 'Zufrieden',
+%             },
+%             value => "happy",
+%         },
+%         {
+%             text => {
+%                 de => 'Bedingt zufrieden',
+%             },
+%             value => "partiallyHappy",
+%         },
+%         {
+%             text => {
+%                 de => 'Teiweise zufrieden',
+%             },
+%             value => 'partiallyUnhappy',
+%         },
+%         {
+%             text => {
+%                 de => 'Unzufrieden',
+%                 en => 'Unhappy',
+%             },
+%             value => 'unhappy',
+%         },
+%     ],
+%     details => {
+%         de => 'Weitere Rückmeldungen (optional)',
+%         en => 'Further feedback (optionally)'
+%     },
+%     submit => {
+%         de => 'Abschicken',
+%         en => 'Submit',
+%     },
+% );
+%
 <div class="container">
   <div class="row">
     <div class="col s12">
@@ -13,38 +55,23 @@
       <form id="orderform" action="/saveFeedback" method="post">
         <input type="hidden" name="secret" value="<%= "xyz$md5" %>">
         <input type="hidden" name="ticketId" value="<%= $ticketId %>">
-<p>Lang=<%= $lang %></p>
-        <p class="flow-text">
-          Waren Sie zufrieden mit der Antwort auf<br />
-          Ticket <%= $ticketId %> (<%= $subject %>)?</p>
+        <p class="flow-text"><%= $t{question}{$lang} %></p>
 
         <div id="radio">
-        
-          <p>
-            <label>
-              <input name="feedback" type="radio" value="good" <%= $checked1 %> />
-              <span>Zufrieden</span>
+% for my $s (@{$t{selection}}) {
+          <p><label>
+              <input name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked1 %> />
+              <span><%= $s->{text}{$lang} %></span>
             </label>
           </p>
-          <p>
-            <label>
-              <input name="feedback" type="radio" value="ok" <%= $checked2 %> />
-              <span>Ok</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="feedback" type="radio" value="bad"<%= $checked3 %>  />
-              <span>Nicht zufrieden</span>
-            </label>
-          </p>
+% }
         </div>
 
         <div class="input-field">
           <textarea name="comment" id="textarea1" class="materialize-textarea"><%= $comment %></textarea>
-          <label for="textarea1">Weitere Angaben (optional)</label>
+          <label for="textarea1"><%= $t{details}{$lang} %></label>
         </div>
-        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f5671">Abschicken</button>
+        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f5671"><%= $t{submit}{$lang} %></button>
       </form>
     </div>
   </div>

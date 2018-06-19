@@ -63,8 +63,59 @@ has config => sub {
     );
 };
 
+has templateText => sub {
+    return {
+     ticket => {
+         de => 'Ticket',
+         en => 'Ticket',
+     },
+     question => {
+         de => q{Waren Sie zufrieden mit der Beantwortung Ihrer Anfrage?},
+         en => q{Where you satisfied with the answer to your request?},
+     },
+     selection => [
+         {
+             text => {
+                 de => 'Zufrieden',
+                 en => 'Satisfied'
+             },
+             value => 'happy',
+         },
+         {
+             text => {
+                 de => 'Bedingt zufrieden',
+                 en => 'Partially satisfied'
+             },
+             value => 'partiallyHappy',
+         },
+         {
+             text => {
+                 de => 'Teilweise unzufrieden',
+                 en => 'Partially unsatisfied'
+             },
+             value => 'partiallyUnhappy',
+         },
+         {
+             text => {
+                 de => 'Unzufrieden',
+                 en => 'Unhappy',
+             },
+             value => 'unhappy',
+         },
+     ],
+     details => {
+         de => 'Weitere Rückmeldungen (optional)',
+         en => 'Further feedback (optionally)'
+     },
+     submit => {
+         de => 'Abschicken',
+         en => 'Submit',
+     },
+    };
+};
+
 has md5secret => sub {
-    RT->Config->Get("RtFb_FeedbackSecret");
+    RT->Config->Get('RtFb_FeedbackSecret') // '42dsf2354';
 };
 
 sub md5Hash {
@@ -118,7 +169,8 @@ sub startup {
 
     my $md5;
 
-    # http://localhost:7867/21/717fe933bae09860276fda97cb6de238/good
+    # with default secret:
+    # https://feedback.switchplus.ch/21/cea91424e32b0878ad72d3c2fcda9128/partiallyHappy
     $r->get('/:ticket/:md5/:feedback' => sub {
                 my $c = shift;
                 my $ticketId = $c->param('ticket');
@@ -132,9 +184,11 @@ sub startup {
                     my $subject = $ticket->Subject;
 
                     my @languages;
-                    my $userLang = $ticket->Requestors->UserMembersObj->First->Lang;
+                    my $requestor = $ticket->Requestors->UserMembersObj->First;
+                    my $userLang;
+                    $userLang = $requestor->Lang if $requestor;
                     push @languages, $userLang if $userLang;
-                    say "userLang=", ($userLang // 'undefined');
+#                    say "userLang=", ($userLang // 'undefined');
                     my @acceptedLanguages = split(',', $c->req->headers->accept_language);
                     my %lhash;
                     for my $l (@acceptedLanguages) {
@@ -149,17 +203,18 @@ sub startup {
                         $userLang = $l;
                         last;
                     }
-                    say "languages=", join ', ', @languages;
+#                    say "languages=", join ', ', @languages;
                     $userLang //= 'de';
-                    say "userLang=", ($userLang // 'undefined');
+#                    say "userLang=", ($userLang // 'undefined');
                     my $comment = $ticket->CustomFieldValues('Feedback Kommentar')->Next;
                     $comment = $comment->Content if defined $comment;
 #                    warn "comment = ", dumper $comment // 'UNDEFINED';
-                    $c->stash('ticketId' => $ticketId);
-                    $c->stash('subject'  => $subject);
-                    $c->stash('comment'  => ($comment // ''));
-                    $c->stash('feedback' => $feedback);
-                    $c->stash('lang'     => $userLang);
+                    $c->stash('ticketId'     => $ticketId);
+                    $c->stash('subject'      => $subject);
+                    $c->stash('comment'      => ($comment // ''));
+                    $c->stash('feedback'     => $feedback);
+                    $c->stash('lang'         => $userLang);
+                    $c->stash('templateText' => $app->templateText);
                     $c->render('feedback');
                 }
                 else {

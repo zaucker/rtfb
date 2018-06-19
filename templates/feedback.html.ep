@@ -1,77 +1,45 @@
 % layout 'default';
 % title 'Feedback';
 
-% my $checked1 = $feedback eq 'good' ? 'checked' : '';
-% my $checked2 = $feedback eq 'ok'   ? 'checked' : '';
-% my $checked3 = $feedback eq 'bad'  ? 'checked' : '';
+% my @checked;
+% $checked[0] = $feedback eq 'happy'            ? 'checked' : '';
+% $checked[1] = $feedback eq 'partiallyHappy'   ? 'checked' : '';
+% $checked[2] = $feedback eq 'partiallyUnhappy' ? 'checked' : '';
+% $checked[3] = $feedback eq 'unhappy'          ? 'checked' : '';
 %
-%
-% my %t = (
-%     question => {
-%         de => "Waren Sie zufrieden mit der Antwort auf <br />Ticket $ticketId ($subject)?",
-%     },
-%     selection => [
-%         {
-%             text => {
-%                 de => 'Zufrieden',
-%             },
-%             value => "happy",
-%         },
-%         {
-%             text => {
-%                 de => 'Bedingt zufrieden',
-%             },
-%             value => "partiallyHappy",
-%         },
-%         {
-%             text => {
-%                 de => 'Teiweise zufrieden',
-%             },
-%             value => 'partiallyUnhappy',
-%         },
-%         {
-%             text => {
-%                 de => 'Unzufrieden',
-%                 en => 'Unhappy',
-%             },
-%             value => 'unhappy',
-%         },
-%     ],
-%     details => {
-%         de => 'Weitere Rückmeldungen (optional)',
-%         en => 'Further feedback (optionally)'
-%     },
-%     submit => {
-%         de => 'Abschicken',
-%         en => 'Submit',
-%     },
-% );
+% my $t = $templateText;
+% use Data::Dumper;
+% warn Dumper "t=", $t;
 %
 <div class="container">
   <div class="row">
     <div class="col s12">
-      <br/>
+      <br>
+        <p class="flow-text"><%= $t->{ticket}{$lang} %>&nbsp;<%= $ticketId %>: (<%= $subject %>)<br>
+           <%= $t->{question}{$lang} %>
+        </p>
 
       <form id="orderform" action="/saveFeedback" method="post">
         <input type="hidden" name="secret" value="<%= "xyz$md5" %>">
         <input type="hidden" name="ticketId" value="<%= $ticketId %>">
-        <p class="flow-text"><%= $t{question}{$lang} %></p>
 
         <div id="radio">
-% for my $s (@{$t{selection}}) {
+% my $f = 0;
+% for my $s (@{$t->{selection}}) {
           <p><label>
-              <input name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked1 %> />
+              <input name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked[$f] %> />
               <span><%= $s->{text}{$lang} %></span>
             </label>
           </p>
+%     $f++;
 % }
         </div>
 
         <div class="input-field">
           <textarea name="comment" id="textarea1" class="materialize-textarea"><%= $comment %></textarea>
-          <label for="textarea1"><%= $t{details}{$lang} %></label>
+          <label for="textarea1"><%= $t->{details}{$lang} %></label>
         </div>
-        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f5671"><%= $t{submit}{$lang} %></button>
+        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f5671"><%= $t->{submit}{$lang} %></button>
       </form>
     </div>
   </div>

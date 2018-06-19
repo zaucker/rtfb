@@ -1,9 +1,20 @@
 RtFb
 ===
 Version: 0.1.0
-Date: 2018-03-18
+Date: 2018-06-19
 
 Request Tracker feedback form handler
+
+RT Setup
+--------
+
+  * Create Ticket Customfield 'Feedback Kommentar'
+
+  * Install etc/RT-Feedback-Template.dist as resolve scrip
+    ( fix "use lib" statement at the beginning )
+
+  * Create a RtFb_FeedbackSecret config variable in your RT_SiteConfig.pm
+    (optionally, defaults to value in lib/RtFb.pm)
 
 SETUP
 -----
@@ -20,14 +31,15 @@ SETUP
 RUNNING
 -------
 
+* Set RTHOME environment variable to your RT install directory
 
-Run rtfb like this:
+* Run rtfb like this:
 
-   bin/rtfb.pl daemon --listen 'http://rtfb:3834'
+     bin/rtfb.pl daemon --listen 'http://*:8520'
 
-To run behind a reverse proxy, add the --proxy option
+  To run behind a reverse proxy, add the --proxy option
 
-   bin/rtfb.pl daemon --proxy --mode=production --listen 'http://rtfb:3834'
+     bin/rtfb.pl daemon --proxy --mode=production --listen 'http://*:8520'
 
 Enjoy!
 

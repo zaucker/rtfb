@@ -2,7 +2,15 @@
   use lib "/opt/rtfb/lib";
   use Digest::MD5 qw(md5_hex);
 
-  my $lang = 'de';
+  my $ticket_id      = $Ticket->id;
+  my $ticket_subject = $Ticket->Subject;
+
+  my $requestor = $Ticket->Requestors->UserMembersObj->First;
+  my $lang = $requestor->Lang if $requestor;
+  $lang //= 'de';
+  my ($l, $sl) = split('-', $lang);
+  $lang = $l;
+
   my $url_root      = RT->Config->Get("RtFb_FeedbackURL");
   my $secret        = RT->Config->Get("RtFb_FeedbackSecret");
   my $support_mail  = RT->Config->Get("RtFb_FeedbackMail");
@@ -11,29 +19,26 @@
   my $footer        = RT->Config->Get("RtFb_MailFooter")->{$lang};
   my $feedbackForm  = RT->Config->Get("RtFb_FeedbackForm");
 
-  my @feedbackList;
-  for my $s (@{$feedbackFrom->{selection}}) {
-      push @feedbackList, $s->{value};
-  }
-  my $mail  = $feedbackFrom->{mail}{$lang};
-  my $phone = $feedbackFrom->{phone}{$lang};
+  my $mail  = $feedbackForm->{mail}{$lang};
+  my $phone = $feedbackForm->{phone}{$lang};
 
-  my $ticket_id      = $Ticket->id;
-  my $ticket_subject = $Ticket->Subject;
+  my $feedbackList = $feedbackForm->{selection};
 
   my $hash = md5_hex($ticket_id . $secret);
   my $feedback_link = "$url_root/$ticket_id/$hash";
 
   my $feedbacks = '';
-  for my $fb (@feedbackList){
-      $feedbacks .= qq{<li><a href="$feedback_link/$fb">$fb</a></li>\n};
+  for my $fb (@$feedbackList){
+      my $value = $fb->{value};
+      my $label = $fb->{text}{$lang};
+      $feedbacks .= qq{<li><a href="$feedback_link/$value">$label</a></li>\n};
   } 
 
 # ======
 qq{Subject: $ticket_id: $ticket_subject
 Content-Type: text/html; charset=UTF-8
 
-$intro
+<p>$intro</p>
 <ul>
 $feedbacks
 </ul>

@@ -8,7 +8,13 @@ Request Tracker feedback form handler
 RT Setup
 --------
 
-  * Create Ticket Customfield 'Feedback Kommentar'
+  * Define Config variables in etc/RT_SiteConfig.pm
+  
+
+  * Create Ticket Customfields:
+
+    - 'Feedback' (select one from list with values from $RtFb_FeedbackForm->{selection}[]{value})
+    - 'Feedback Kommentar' (enter one)
 
   * Install etc/RT-Feedback-Template.dist as resolve scrip
     ( fix "use lib" statement at the beginning )
@@ -24,22 +30,24 @@ SETUP
 
   * Install
 
-  ./configure
+  ./configure --prefix=/opt/rtfb
   make
   make install
 
 RUNNING
 -------
 
-* Set RTHOME environment variable to your RT install directory
-
 * Run rtfb like this:
 
-     bin/rtfb.pl daemon --listen 'http://*:8520'
+     RTHOME=/opt/rt441 bin/rtfb.pl daemon --listen 'http://*:8520'
 
   To run behind a reverse proxy, add the --proxy option
 
-     bin/rtfb.pl daemon --proxy --mode=production --listen 'http://*:8520'
+     RTHOME=/opt/rt441 bin/rtfb.pl daemon --proxy --mode=production --listen 'http://*:8520'
+
+  In a start script the RTHOME environment variable can instead be set to RT install directory.
+
+
 
 Enjoy!
 

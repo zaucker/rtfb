@@ -1,38 +1,33 @@
 {
-use lib "/home/zaucker/checkouts/rtfb/thirdparty/lib/perl5";
-#use Mojo::Util qw(md5_sum);
-use Digest::MD5 qw(md5_hex);
+  use lib "/opt/rtfb/lib";
+  use Digest::MD5 qw(md5_hex);
 
-my $lang = 'de';
-my $url_root      = RT->Config->Get("RtFb_FeedbackURL");
-my $secret        = RT->Config->Get("RtFb_FeedbackSecret");
-my $support_mail  = RT->Config->Get("RtFb_FeedbackMail");
-my $support_phone = RT->Config->Get("RtFb_FeedbackPhone");
-my $feedbackList  = RT->Config->Get("RtFb_FeedbackList");
-my $intro         = RT->Config->Get("RtFb_MailIntro"){$lang};
-my $footer        = RT->Config->Get("RtFb_MailFooter"){$lang};
-my $ticket_id      = $Ticket->id;
-my $ticket_subject = $Ticket->Subject;
-my $mail = [
-  en => 'Mail',
-  de => 'Mail',
-  fr => 'Mail',
-  it => 'Mail',
-]->{$lang};
-my $phone = [
-  en => 'Phone',
-  de => 'Tel',
-  fr => 'Tel',
-  it => 'Tel',
-]->{$lang};
+  my $lang = 'de';
+  my $url_root      = RT->Config->Get("RtFb_FeedbackURL");
+  my $secret        = RT->Config->Get("RtFb_FeedbackSecret");
+  my $support_mail  = RT->Config->Get("RtFb_FeedbackMail");
+  my $support_phone = RT->Config->Get("RtFb_FeedbackPhone");
+  my $intro         = RT->Config->Get("RtFb_MailIntro")->{$lang};
+  my $footer        = RT->Config->Get("RtFb_MailFooter")->{$lang};
+  my $feedbackForm  = RT->Config->Get("RtFb_FeedbackForm");
 
-my $hash     = md5_hex($ticket_id . $secret);
+  my @feedbackList;
+  for my $s (@{$feedbackFrom->{selection}}) {
+      push @feedbackList, $s->{value};
+  }
+  my $mail  = $feedbackFrom->{mail}{$lang};
+  my $phone = $feedbackFrom->{phone}{$lang};
 
-my $feedback_link = "$url_root/$ticket_id/$hash";
-my $feedbacks = '';
-for my $fb (@$feedbackList){
-    $feedbacks .= qq{<li><a href="$feedback_link/$fb">$fb</a></li>\n};
-} 
+  my $ticket_id      = $Ticket->id;
+  my $ticket_subject = $Ticket->Subject;
+
+  my $hash = md5_hex($ticket_id . $secret);
+  my $feedback_link = "$url_root/$ticket_id/$hash";
+
+  my $feedbacks = '';
+  for my $fb (@feedbackList){
+      $feedbacks .= qq{<li><a href="$feedback_link/$fb">$fb</a></li>\n};
+  } 
 
 # ======
 qq{Subject: $ticket_id: $ticket_subject
@@ -42,9 +37,11 @@ $intro
 <ul>
 $feedbacks
 </ul>
-$footer
-<p>$mail: $support_mail<br>
-$phone: $support_phone</p>
+<p>$footer</p>
+<table>
+  <tr><td>$mail:</td><td>$support_mail</td></tr>
+  <tr><td>$phone:</td><td>$support_phone</td></tr>
+</table>
 }
 
 }

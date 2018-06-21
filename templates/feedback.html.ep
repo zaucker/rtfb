@@ -1,16 +1,7 @@
 % layout 'default';
 % title 'Feedback';
 
-% my @checked;
-% $checked[0] = $feedback eq 'happy'            ? 'checked' : '';
-% $checked[1] = $feedback eq 'partiallyHappy'   ? 'checked' : '';
-% $checked[2] = $feedback eq 'partiallyUnhappy' ? 'checked' : '';
-% $checked[3] = $feedback eq 'unhappy'          ? 'checked' : '';
-%
 % my $t = $templateText;
-% use Data::Dumper;
-% warn Dumper "t=", $t;
-%
 <div class="container">
   <div class="row">
     <div class="col s12">
@@ -24,14 +15,13 @@
         <input type="hidden" name="ticketId" value="<%= $ticketId %>">
 
         <div id="radio">
-% my $f = 0;
 % for my $s (@{$t->{selection}}) {
+%     my $checked = $s->{value} eq $feedback ? 'checked' : '';
           <p><label>
-              <input name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked[$f] %> />
+              <input name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked %> />
               <span><%= $s->{text}{$lang} %></span>
             </label>
           </p>
-%     $f++;
 % }
         </div>
 
@@ -39,7 +29,7 @@
           <textarea name="comment" id="textarea1" class="materialize-textarea"><%= $comment %></textarea>
           <label for="textarea1"><%= $t->{details}{$lang} %></label>
         </div>
-        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f5671"><%= $t->{submit}{$lang} %></button>
+        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f56
       </form>
     </div>
   </div>

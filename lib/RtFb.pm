@@ -5,6 +5,7 @@ use Mojo::JSON qw(encode_json);
 use Mojo::Util qw(dumper);
 
 use Digest::MD5 qw(md5_hex);
+use RtFb::Command::loadUser;
 use RtFb::Config;
 use RtFb::Feedback;
 use RT;
@@ -112,6 +113,9 @@ sub getUserLang {
 
 sub startup {
     my $app = shift;
+
+    push @{$app->commands->namespaces}, 'RtFb::Command';
+
     my $cfg = $app->config->cfgHash;
     $app->commands->message("Usage:\n\n".$app->commands->extract_usage."\nCommands:\n\n");
     $app->secrets([$cfg->{GENERAL}{secret}]);

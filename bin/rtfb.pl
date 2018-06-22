@@ -1,8 +1,8 @@
 #!/usr/bin/env perl
 
 BEGIN {
-#   die "ERROR: Must define env variable RTHOME" unless $ENV{RTHOME};
-    $ENV{RTHOME} //= '/opt/rt442';
+    $ENV{RTHOME} //= '/opt/rt441';
+    die "RT not found" if !-d $ENV{RTHOME};
 }
 
 use lib qw(); # PERL5LIB
@@ -13,6 +13,7 @@ use Mojo::Base -base;
 # when things get converted to string and back
 use POSIX qw(locale_h);
 setlocale(LC_NUMERIC, "C");use strict;
+use warnings;
 use Mojolicious::Commands;
 use lib "$ENV{RTHOME}/lib";
 use lib "$ENV{RTHOME}/lib/perl5";

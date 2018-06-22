@@ -1,2 +1,7 @@
-0.1.0 2018-04-20  Fritz Zaucker (fritz.zaucker@oetiker.ch)
+0.2.0 2018-06-22 Fritz Zaucker
+- add multilingual support
+- move everything configurable through RT config
+- add loadUser command
+
+0.1.0 2018-04-20 Fritz Zaucker (fritz.zaucker@oetiker.ch)
 - initial release

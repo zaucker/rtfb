@@ -50,7 +50,7 @@
     <script>
     $(document).ready(function() {
         FastClick.attach(document.body);
-        $(".button-collapse").sideNav();
+//        $(".button-collapse").sideNav();
     });
     </script>
   </head>

@@ -40,18 +40,18 @@ sub run {
     while (<$fh>) {
         chomp;
         next if /^\?\?\?/;
-        my ($custId, $eMail, $lang) = split ';', lc($_);
+        my ($custId, $eMail, $language) = split ';', lc($_);
         next unless $eMail and $lang;
 
         my ($ret, $msg) = $user->LoadByEmail($eMail);
-        if ($ret and $lang ne $user->Lang) { # user found
-            my ($ret, $msg) = $user->SetLang($lang);
+        if ($ret and $language ne $user->Lang) { # user found
+            my ($ret, $msg) = $user->SetLang($language);
             if ($ret) {
                 $lang++;
-                say "Language set for $custId: $lang";
+                say "Language set for $custId: $language";
             }
             else {
-                say STDERR "Failed to set lang=$lang on email=$eMail: $msg";
+                say STDERR "Failed to set lang=$language on email=$eMail: $msg";
                 $failed++;
             }
         }

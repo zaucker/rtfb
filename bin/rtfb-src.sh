@@ -2,13 +2,12 @@
 
 export RTHOME=$HOME/opt/picit/rt442
 
-PORT=$1
-if [ $PORT ]; then
-    echo "Starting rtfb on port '$1'"
-else
-    echo "Starting rtfb on default port. Usage: $0 (port)"
-    PORT=7867
+PORT=8520
+if [ $1 ]; then
+    PORT=$1
 fi
+
+echo "Starting rtfb on port $PORT"
 
 export MOJO_MODE=development
 export MOJO_LOG_LEVEL=debug

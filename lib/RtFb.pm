@@ -64,7 +64,7 @@ has config => sub {
     );
 };
 
-has feedbackText => sub {
+has feedbackForm => sub {
     RT->Config->Get('RtFb_FeedbackForm');
 };
 
@@ -82,37 +82,12 @@ sub md5Hash {
     return md5_hex($ticketId . $c->md5secret);
 }
 
-sub getUserLang {
-    my $app        = shift;
-    my $ticket     = shift;
-    my $langHeader = shift;
-
-    my @acceptedLanguages = split(',', $langHeader);
-    my @languages;
-    my $requestor = $ticket->Requestors->UserMembersObj->First;
-    my $userLang;
-    $userLang = $requestor->Lang if $requestor;
-    push @languages, $userLang if $userLang;
-    my %lhash;
-    for my $l (@acceptedLanguages) {
-        $l =~ s/;q=.*//;
-        $l =~ s/-.*//;
-        next unless $l;
-        push @languages, $l unless $lhash{$l};
-        $lhash{$l} = 1;
-    }
-    for my $lang (@languages) {
-        my ($l, $s) = split('-', lc($lang));
-        next unless $l eq 'en' or $l eq 'de' or $l eq 'fr' or $l eq 'it';
-        $userLang = $l;
-        last;
-    }
-    $userLang //= 'de';
-    return $userLang;
-}
 
 sub startup {
     my $app = shift;
+    $app->plugin("OpenAPI" => {
+        spec => $app->home->rel_file('share/openapi.yaml'),
+    });
 
     push @{$app->commands->namespaces}, 'RtFb::Command';
 
@@ -158,73 +133,14 @@ sub startup {
     });
 
     my $md5;
+    $r->get('/REST/apidoc' => 'apidoc');
 
-    # with default secret:
-    # https://feedback.switchplus.ch/21/cea91424e32b0878ad72d3c2fcda9128/partiallyHappy
-    $r->get('/:ticket/:md5/:feedback' => sub {
-                my $c = shift;
-                my $ticketId = $c->param('ticket');
-                my $feedback = $c->param('feedback');
-                my $check    = $c->app->md5Hash($ticketId);
-                $md5         = $c->param('md5');
+    # # with default secret:
+    # # https://feedback.switchplus.ch/21/cea91424e32b0878ad72d3c2fcda9128/partiallyHappy
 
-                if ($md5 eq $check) {
-                    my $ticket = RT::Ticket->new(RT->SystemUser);
-                    $ticket->Load($ticketId);
-                    my $subject = $ticket->Subject;
-
-                    my $comment = $ticket->CustomFieldValues('Feedback Kommentar')->Next;
-                    $comment = $comment->Content if defined $comment;
-                    my $userLang = $c->app->getUserLang($ticket, $c->req->headers->accept_language);
-                    $c->stash('ticketId'     => $ticketId);
-                    $c->stash('subject'      => $subject);
-                    $c->stash('comment'      => ($comment // ''));
-                    $c->stash('feedback'     => $feedback);
-                    $c->stash('lang'         => $userLang);
-                    $c->stash('templateText' => $app->feedbackText);
-                    $c->render('feedback');
-                }
-                else {
-                    $c->app->log->debug("ticketId=$ticketId, md5=$md5, check=$check, secret=" . $c->app->md5secret);
-                    $c->render(text => '<h1>Unauthorized</h1>', status => 403);
-                }
-    });
-    $r->post('/saveFeedback' => sub {
-        my $c = shift;
-
-        my $feedback = $c->param('feedback');
-        my $comment  = $c->param('comment');
-        my $secret   = $c->param('secret');
-        my $ticketId = $c->param('ticketId');
-        my $check    = "xyz" . $c->app->md5Hash($ticketId);
-        my $authorized = $check eq $secret;
-        my $response = "feedback=$feedback, comment=$comment, secret=$secret, check=$check, ticketId=$ticketId, authorized=$authorized";
-
-        if ($authorized) {
-            my $ticket = RT::Ticket->new(RT->SystemUser);
-            $ticket->Load($ticketId);
-
-            my @ret;
-            @ret = $ticket->AddCustomFieldValue(Field => 'Feedback', Value => $feedback);
-            $c->app->log->debug("ret(Feedback)=" . dumper \@ret);
-            @ret = $ticket->AddCustomFieldValue(Field => 'Feedback Kommentar', Value => $comment);
-            $c->app->log->debug("ret=" . dumper \@ret);
-            my $subject = $ticket->Subject;
-            my $userLang = $c->app->getUserLang($ticket, $c->req->headers->accept_language);
-            $c->stash('ticketId'     => $ticketId);
-            $c->stash('subject'      => $subject);
-            $c->stash('templateText' => $app->responseText);
-            $c->stash('lang'         => $userLang);
-            $c->render('response');
-        }
-        else {
-            $c->app->log->debug("ticketId=$ticketId, check=$check, secret=$secret");
-            $c->render(text => '<h1>Unauthorized</h1>', status => 403);
-        }
-
-    });
-
+    $app->SUPER::startup();
 }
+
 
 
 1;

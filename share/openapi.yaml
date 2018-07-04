@@ -1,0 +1,148 @@
+swagger: 2.0
+info:
+    title: SwitchPlus RT Feedback
+    description: |
+        SwitchPlus RT Feedback Form Handling
+        # Introduction
+        Bla, bla
+
+    version: 0.0.0
+    license:
+        name: GNU GPL Version 3
+        url: https://www.gnu.org/licenses/gpl-3.0.en.html
+    contact:
+        name: Fritz Zaucker
+        url: https://www.oetiker.ch
+        email: support@oetiker.ch
+
+
+basePath: /REST/v1
+tags:
+  - name: feedback
+    description: RT Feedback Form API calls
+
+paths:
+    /feedback:
+        get:
+            x-mojo-to: feedback#getForm
+            tags:
+              - feedback
+            summary: handle feedback
+            description: |
+                Authenticate by secret and show feedback from.
+            produces:
+               - text/html
+            parameters:
+              - in: query
+                name: ticket
+                type: string
+                pattern: '^(\d+)$'
+                description: >
+                    Ticket Id
+                required: true
+              - in: query
+                name: md5
+                type: string
+                pattern: '^([\da-fA-F]+)$'
+                description: >
+                    md5 hash
+                required: true
+              - in: query
+                name: feedback
+                type: string
+                pattern: '^happy|partiallyHappy|partiallyUnhappy|unhappy$'
+                description: >
+                    Happiness
+                required: true
+            responses:
+                "200":
+                    description: Show feedback form
+                default:
+                    description: Default response
+                    schema:
+                        $ref: '#/definitions/ErrorResponse'
+
+    /save:
+        post:
+            x-mojo-to: feedback#save
+            tags:
+                - feedback
+            summary: save feedback data to RT
+            produces:
+              - text/html
+            consumes:
+              - application/x-www-form-urlencoded
+            parameters:
+              - in: formData
+                name: feedback
+                type: string
+                pattern: '^happy|partiallyHappy|partiallyUnhappy|unhappy$'
+                description: >
+                    Happiness
+                required: true
+              - in: formData
+                name: comment
+                type: string
+                description: >
+                    Feedback comment
+                required: true
+              - in: formData
+                name: ticket
+                type: string
+                pattern: '^(\d+)$'
+                description: >
+                    Ticket Id
+                required: true
+              - in: formData
+                name: secret
+                type: string
+                pattern: '^(xyz[\da-fA-F]+)$'
+                description: >
+                    modified md5 hash
+                required: true
+            responses:
+                "200":
+                    description: session is ok
+
+
+definitions:
+    ErrorResponse:
+        type: object
+        properties:
+            errors:
+                description: list of errors
+                type: array
+                items:
+                    type: object
+                    properties:
+                        message:
+                            type: string
+                            description: Extra details on the error
+                        path:
+                            type: string
+                            description: where did the error occure
+                    required:
+                      - message
+            status:
+                description: http status code
+                type: integer
+                minimum: 100
+                maximum: 599
+        required:
+            - errors
+            - status
+    OkResponse:
+        type: object
+        properties:
+        properties:
+            message:
+                type: string
+                description: Extra details on the error
+            status:
+                description: http status code
+                type: integer
+                minimum: 100
+                maximum: 599
+        required:
+            - message
+            - status

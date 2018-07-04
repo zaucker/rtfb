@@ -2,6 +2,7 @@
 % title 'Feedback';
 
 % my $t = $templateText;
+%
 <div class="container">
   <div class="row">
     <div class="col s12">
@@ -10,27 +11,47 @@
            <%= $t->{question}{$lang} %>
         </p>
 
-      <form id="orderform" action="/saveFeedback" method="post">
-        <input type="hidden" name="secret" value="<%= "xyz$md5" %>">
+      <form name="feedbackForm" id="orderform" action="/saveFeedback" method="post">
+        <input type="hidden" name="secret"   value="<%= "xyz$md5" %>">
         <input type="hidden" name="ticketId" value="<%= $ticketId %>">
 
         <div id="radio">
 % for my $s (@{$t->{selection}}) {
 %     my $checked = $s->{value} eq $feedback ? 'checked' : '';
-          <p><label>
-              <input name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked %> />
-              <span><%= $s->{text}{$lang} %></span>
-            </label>
-          </p>
+%     my $width   = $s->{value} eq $feedback ? 75 : 50;
+            <label>
+             <figure style="position: relative; display: inline-block;">
+               <input valign="middle" name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked %> />
+               <img id="<%= $s->{value} %>" valign="middle" src="<%= $s->{image} %>" width="<%= $width %>" height="<%= $width %>" />
+             <figcaption><%= $s->{text}{$lang} %></figcaption>
+             </figure>
+          </label>
 % }
         </div>
-
         <div class="input-field">
-          <textarea name="comment" id="textarea1" class="materialize-textarea"><%= $comment %></textarea>
-          <label for="textarea1"><%= $t->{details}{$lang} %></label>
+          <label for="textarea1" style="font-size: 24px; position: relative;"><%= $t->{details}{$lang} %><br/></label>
+          <textarea name="comment" id="textarea1" class="materialize-textarea" placeholder="<%= $t->{comment}{$lang} %>"><%= $comment %></textarea>
         </div>
-        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color: #2f56
+        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color:
+        #2f5671; padding-bottom: 1.75em!important;"><%= $t->{submit}{$lang} %></button>
       </form>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function listener() {
+      if (prev != null) {
+          document.getElementById(prev.value).width=50;
+      }
+      document.getElementById(this.value).width=75;
+      prev = this;
+  }
+  var prev, rad = document.forms.feedbackForm.elements.feedback;
+  for (var i = 0; i < rad.length; i++) {
+      rad[i].addEventListener('click', listener);
+      if (rad[i].checked) {
+            prev = rad[i];
+      }
+  }
+</script>

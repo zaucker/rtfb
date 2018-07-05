@@ -80,7 +80,7 @@ sub save {
         ($ret, $msg) = $feedbackTicket->AddCustomFieldValue(Field => 'Feedback', Value => $feedback);
         $c->app->log->error("Set feedback($ticketId)=$msg") unless $ret;
         ($ret, $msg) = $feedbackTicket->AddCustomFieldValue(Field => 'Feedback Kommentar', Value => $comment);
-        $c->app->log->error("Set feedbackComment($ticketId)=$msg" unless $ret;
+        $c->app->log->error("Set feedbackComment($ticketId)=$msg") unless $ret;
 
         my $userLang = $c->_getUserLang($ticket);
         $c->stash('ticketId'     => $ticketId);

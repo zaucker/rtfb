@@ -1,8 +1,8 @@
 ### Adapt and add to $RTHOME/etc/RT_SiteConfig.pm
 
 Set($RtFb_FeedbackSecret, 'dsf78osdf');
-#Set($RtFb_FeedbackURL,    'https://localhost:8520');
-Set($RtFb_FeedbackURL,    'https://rt-test.switchplus.ch:8520');
+#Set($RtFb_FeedbackURL,    'https://localhost:8520/REST/v1/feedback');
+Set($RtFb_FeedbackURL,    'https://rt-test.switchplus.ch:8520/REST/v1/feedback');
 Set($RtFb_FeedbackMail,   'support@oetiker.ch');
 Set($RtFb_FeedbackPhone,  '062 775 9907');
 

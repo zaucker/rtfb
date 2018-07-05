@@ -64,6 +64,10 @@ has config => sub {
     );
 };
 
+has feedbackUrl => sub {
+    RT->Config->Get('RtFb_FeedbackURL');
+};
+
 has feedbackForm => sub {
     RT->Config->Get('RtFb_FeedbackForm');
 };

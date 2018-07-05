@@ -15,12 +15,11 @@ sub getForm {
     my $c = shift;
     $c->openapi->valid_input or return;
 
-    my $md5;
-    $c->app->log->debug('getForm()');
     my $ticketId = $c->param('ticket');
     my $feedback = $c->param('feedback');
+    my $md5      = $c->param('md5');
     my $check    = $c->app->md5Hash($ticketId);
-    $md5         = $c->param('md5');
+    $c->app->log->debug("getForm(): ticketId=$ticketId, md5=$md5, fd=$feedback");
 
     if ($md5 eq $check) {
         my $ticket = RT::Ticket->new(RT->SystemUser);
@@ -36,6 +35,7 @@ sub getForm {
         $c->stash('feedback'     => $feedback);
         $c->stash('lang'         => $userLang);
         $c->stash('md5'          => $md5);
+        $c->stash('feedbackUrl'  => $c->app->feedbackUrl);
         $c->stash('templateText' => $c->app->feedbackForm);
         $c->stash('handler' => 'openapi');
         $c->render('feedback');

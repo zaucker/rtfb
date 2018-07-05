@@ -43,7 +43,7 @@ paths:
               - in: query
                 name: md5
                 type: string
-                pattern: '^([\da-fA-F]+)$'
+                pattern: '^([\da-f]+)$'
                 description: >
                     md5 hash
                 required: true
@@ -62,7 +62,7 @@ paths:
                     schema:
                         $ref: '#/definitions/ErrorResponse'
 
-    /save:
+    /feedback/save:
         post:
             x-mojo-to: feedback#save
             tags:
@@ -72,34 +72,6 @@ paths:
               - text/html
             consumes:
               - application/x-www-form-urlencoded
-            parameters:
-              - in: formData
-                name: feedback
-                type: string
-                pattern: '^happy|partiallyHappy|partiallyUnhappy|unhappy$'
-                description: >
-                    Happiness
-                required: true
-              - in: formData
-                name: comment
-                type: string
-                description: >
-                    Feedback comment
-                required: true
-              - in: formData
-                name: ticket
-                type: string
-                pattern: '^(\d+)$'
-                description: >
-                    Ticket Id
-                required: true
-              - in: formData
-                name: secret
-                type: string
-                pattern: '^(xyz[\da-fA-F]+)$'
-                description: >
-                    modified md5 hash
-                required: true
             responses:
                 "200":
                     description: session is ok

@@ -37,7 +37,6 @@ sub getForm {
         $c->stash('md5'          => $md5);
         $c->stash('feedbackUrl'  => $c->app->feedbackUrl);
         $c->stash('templateText' => $c->app->feedbackForm);
-        $c->stash('handler' => 'openapi');
         $c->render('feedback');
     }
     else {
@@ -56,7 +55,6 @@ sub save {
     my $ticketId = $c->param('ticketId');
     my $check    = "xyz" . $c->app->md5Hash($ticketId);
     my $authorized = $check eq $secret;
-    my $response = "feedback=$feedback, comment=$comment, secret=$secret, check=$check, ticketId=$ticketId, authorized=$authorized";
 
     if ($authorized) {
         my $ticket = RT::Ticket->new(RT->SystemUser);
@@ -66,22 +64,24 @@ sub save {
         my ($ret, $msg);
         # set CFs on original ticket
         ($ret, $msg) = $ticket->AddCustomFieldValue(Field => 'Feedback', Value => $feedback);
-        $c->app->log->error("Set feedback($ticketId)=$msg" unless $ret;
+        $c->app->log->error("Set feedback($ticketId)=$msg") unless $ret;
         ($ret, $msg) = $ticket->AddCustomFieldValue(Field => 'Feedback Kommentar', Value => $comment);
-        $c->app->log->error("Set feedback($ticketId)=$msg" unless $ret;
+        $c->app->log->error("Set feedback($ticketId)=$msg") unless $ret;
 
         # create feedback ticket and set CFs
         my $feedbackTicket = RT::Ticket->new(RT->SystemUser);
-        @ret = $feedbackTicket->Create(
+        ($ret, $msg) = $feedbackTicket->Create(
             Queue => "Feedback",
             Subject => "Feedback for ticket $ticketId",
             Status  => "Resolved",
             Parents => $ticketId,
-        );    
-        $c->app->log->debug("ret(Feedback)=" . dumper \@ret);
-        @ret = $feedbackTicket->AddCustomFieldValue(Field => 'Feedback', Value => $feedback);
-        @ret = $feedbackTicket->AddCustomFieldValue(Field => 'Feedback Kommentar', Value => $comment);
- 
+        );
+        $c->app->log->error("ret(feedbackTicket->Create)=$msg") unless $ret;
+        ($ret, $msg) = $feedbackTicket->AddCustomFieldValue(Field => 'Feedback', Value => $feedback);
+        $c->app->log->error("Set feedback($ticketId)=$msg") unless $ret;
+        ($ret, $msg) = $feedbackTicket->AddCustomFieldValue(Field => 'Feedback Kommentar', Value => $comment);
+        $c->app->log->error("Set feedbackComment($ticketId)=$msg" unless $ret;
+
         my $userLang = $c->_getUserLang($ticket);
         $c->stash('ticketId'     => $ticketId);
         $c->stash('subject'      => $subject);

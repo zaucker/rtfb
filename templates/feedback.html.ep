@@ -11,7 +11,7 @@
            <%= $t->{question}{$lang} %>
         </p>
 
-      <form name="feedbackForm" id="orderform" action="$feedbackUrl/saveFeedback" method="post">
+      <form name="feedbackForm" id="orderform" action="<%= $feedbackUrl %>/save" method="post">
         <input type="hidden" name="secret"   value="<%= "xyz$md5" %>">
         <input type="hidden" name="ticketId" value="<%= $ticketId %>">
 

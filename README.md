@@ -8,6 +8,19 @@ Request Tracker feedback form handler
 RT Setup
 --------
 
+  * Create Queues "Feedback" and "UpdateUserLanguage"
+
+    Make sure that there are no scrips doing funny things to tickets
+    in these queues. Specifically (SwitchPlus), add this code at the
+    beginning of the action preparation code of scrips "QueueMover"
+    and "Merge Tickets of same Requestor":
+
+    my $IGNORED_A = {
+        Feedback => 1,
+        UpdateUserLanguage => 1,
+    };
+    return 0 if exists $IGNORED_A->{$queueName};
+
   * Add config variables from etc/RT_SiteConfig.pm.dist to
     $RTHOME/etc/RT_SiteConfig.pm and adapt to local requirements
 
@@ -21,9 +34,20 @@ RT Setup
 
     - 'Feedback Kommentar' (enter one)
 
-  * Install etc/RT-Feedback-Template.dist as resolve scrip
-    ( fix "use lib" statement at the beginning )
+  * Create Scrip FeedbackOnResolve:
 
+    - Condition: On Resolve
+    - Action: Notify Requestors
+    - Template: copy from etc/RT-Feedback-Template.dist
+                (fix "use lib" statement at the beginning)
+
+  * Create Scrip UpdateUserLanguage:
+
+    - Condition: On Create
+    - Action: User Defined
+    - Template: Blank
+
+    User custom action code from etc/RT-UpdateUserLanguage.scrip
 
 SETUP
 -----

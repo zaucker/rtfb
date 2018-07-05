@@ -1,0 +1,46 @@
+* Custom action preparation code:
+
+return 1;
+
+* Custom action commit code:
+
+ use lib "/opt/rtfb/lib";
+use Mojo::JSON qw(decode_json);
+
+my $Ticket   = $self->TicketObj;
+my $ticketId = $Ticket->id;
+my $subject  = $Ticket->Subject;
+ 
+my $secret = RT->Config->Get('RtFb_UpdateLanguageSecret');
+my $data   = decode_json $subject;
+$RT::Logger->debug("UpdateUserLang($ticketId), subject=$subject, secret=$secret");
+
+return unless $data->{secret} and $data->{secret} eq $secret;
+my $email  = $data->{email};
+my $custId = $data->{customerId};
+
+my $language = $data->{language};
+return unless $email and $language;
+  
+my $user = RT::User->new(RT->SystemUser);
+my ($ret, $msg) = $user->LoadByEmail($email);
+if (not $ret) { # user not found
+    $RT::Logger->error("Failed to load user by email $email: $msg");
+    return;
+}
+
+if ($language ne $user->Lang) {
+    my ($ret, $msg) = $user->SetLang($language);
+    if ($ret) {
+        $RT::Logger->debug("Language set for $custId: $language");
+    }
+    else {
+        $RT::Logger->error("Failed to set lang=$language on email=$email: $msg");
+    }
+}
+else {
+    $RT::Logger->debug("Language already ok");
+}
+$Ticket->SetStatus('Resolved');
+
+return 1;

@@ -1,3 +1,9 @@
+0.3.0 2018-07-05 Fritz Zaucker
+- openapi
+- separate controller
+- improved templates for mail and webpage
+- icon resizing
+
 0.2.0 2018-06-22 Fritz Zaucker
 - add multilingual support
 - move everything configurable through RT config

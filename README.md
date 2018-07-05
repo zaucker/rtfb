@@ -8,19 +8,22 @@ Request Tracker feedback form handler
 RT Setup
 --------
 
-  * Define Config variables in etc/RT_SiteConfig.pm
-  
+  * Add config variables from etc/RT_SiteConfig.pm.dist to
+    $RTHOME/etc/RT_SiteConfig.pm and adapt to local requirements
+
+    Create a RtFb_FeedbackSecret config variable in your
+    RT_SiteConfig.pm (optionally, defaults to value in lib/RtFb.pm)
 
   * Create Ticket Customfields:
 
-    - 'Feedback' (select one from list with values from $RtFb_FeedbackForm->{selection}[]{value})
+    - 'Feedback' (select one from list with values from
+                  $RtFb_FeedbackForm->{selection}[]{value})
+
     - 'Feedback Kommentar' (enter one)
 
   * Install etc/RT-Feedback-Template.dist as resolve scrip
     ( fix "use lib" statement at the beginning )
 
-  * Create a RtFb_FeedbackSecret config variable in your RT_SiteConfig.pm
-    (optionally, defaults to value in lib/RtFb.pm)
 
 SETUP
 -----
@@ -47,7 +50,7 @@ RUNNING
 
   In a start script the RTHOME environment variable can instead be set to RT install directory.
 
-
+* Adapt etc/rtfb.service.dist and install to /etc/systemd/service
 
 Enjoy!
 

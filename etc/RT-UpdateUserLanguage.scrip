@@ -21,7 +21,8 @@ my $custId = $data->{customerId};
 
 my $language = $data->{language};
 return unless $email and $language;
-  
+
+$language =~ s/-.*//; # remove sub code
 my $user = RT::User->new(RT->SystemUser);
 my ($ret, $msg) = $user->LoadByEmail($email);
 if (not $ret) { # user not found

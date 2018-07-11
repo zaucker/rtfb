@@ -8,8 +8,7 @@
   my $requestor = $Ticket->Requestors->UserMembersObj->First;
   my $lang = $requestor->Lang if $requestor;
   $lang //= 'de';
-  my ($l, $sl) = split('-', $lang);
-  $lang = $l;
+  $lang =~ s/-.*//; # remove sub code;
   
   my $url_root      = RT->Config->Get("RtFb_FeedbackURL");
   my $secret        = RT->Config->Get("RtFb_FeedbackSecret");

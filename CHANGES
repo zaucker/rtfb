@@ -1,3 +1,7 @@
+1.0.0 2018-08-28 Fritz Zaucker
+- add multilingual templates and scrips for autoresponse
+- move text variables to separate config file
+
 0.3.0 2018-07-05 Fritz Zaucker
 - openapi
 - separate controller

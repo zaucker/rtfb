@@ -40,7 +40,7 @@ RT Setup
 
     - Condition: On Resolve
     - Action: Notify Requestors
-    - Template: copy from etc/RT-Feedback-Template.dist
+    - Template: copy from etc/RT/FeedbackOnResolve.tmpl
                 (fix "use lib" statement at the beginning)
 
   * Create Scrip UpdateUserLanguage:
@@ -53,8 +53,9 @@ RT Setup
 
   * Multilingual Autoresponse scrips:
 
-    - create templates Autoreply_multilingual and Autoreply_multilingual_busy
-      and configure the autoreply scrip to use one of the
+    - create templates from etc/RT/Autoreply_multilingual.tmpl
+      and etc/RT/Autoreply_multilingual_busy.tmpl
+      and configure the autoreply scrip to use one of them
 
 SETUP
 -----

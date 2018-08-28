@@ -1,0 +1,49 @@
+{
+# ###########################################################################
+# Extension requested by [O+P #35026]
+# Created by Fritz Zaucker - OETIKER+PARTNER AG - 2018-08-27
+# ###########################################################################
+  use lib "/opt/rtfb/lib";
+  use Digest::MD5 qw(md5_hex);
+
+  my $ticket_id      = $Ticket->id;
+  my $ticket_subject = $Ticket->Subject;
+
+  my $requestor = $Ticket->Requestors->UserMembersObj->First;
+  my $lang = $requestor->Lang if $requestor;
+  $lang //= 'de';
+  my ($l, $sl) = split('-', $lang);
+  $lang = $l;
+
+  my $feedbackForm = RT->Config->Get("RtFb_FeedbackForm");
+  my $auto_reply   = RT->Config->Get("RtFb_AutoReply");
+  my $footer       = RT->Config->Get("RtFb_MailFooter");
+
+  my $greeting     = $auto_reply->{greeting}{$lang};
+  my $intro1       = $auto_reply->{intro1}{$lang};
+  my $intro2       = $auto_reply->{intro2}{$lang};
+  my $busy1        = $auto_reply->{busy1}{$lang};
+  my $busy2        = $auto_reply->{busy2}{$lang};
+  my $trailer      = $auto_reply->{trailer}{$lang};
+  my $subject      = $feedbackForm->{subject}{$lang};
+
+
+# ======
+qq{$subject: switchplus: $ticket_subject
+Content-Type: text/html; charset=UTF-8
+
+<p>$greeting</p>
+<p>$intro1 "$ticket_subject" $intro2.</p>
+<p>$busy1</p>
+<p><a href="https://www.switchie.ch">www.switchie.ch</a></p>
+<p>$busy2</p>
+<p>$trailer</p>
+
+<p>$footer->{logo}</p>
+<p>$footer->{address}<br/>
+$footer->{phone}{$lang} $footer->{phoneNumber}</p>
+<a href="$footer->{facebookUrl}">$footer->{facebookLogo}$footer->{facebookUrl}</a><br/>
+<a href="$footer->{twitterUrl}">$footer->{twitterLogo}$footer->{twitterUrl}</a></p>
+
+}
+}

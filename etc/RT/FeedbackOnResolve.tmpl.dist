@@ -1,4 +1,8 @@
 {
+# ###########################################################################
+# Extension requested by [O+P #35026]
+# Created by Fritz Zaucker - OETIKER+PARTNER AG - 2018-07-05
+# ###########################################################################
   use lib "/opt/rtfb/lib";
   use Digest::MD5 qw(md5_hex);
 
@@ -8,7 +12,8 @@
   my $requestor = $Ticket->Requestors->UserMembersObj->First;
   my $lang = $requestor->Lang if $requestor;
   $lang //= 'de';
-  $lang =~ s/-.*//; # remove sub code;
+  my ($l, $sl) = split('-', $lang);
+  $lang = $l;
   
   my $url_root      = RT->Config->Get("RtFb_FeedbackURL");
   my $secret        = RT->Config->Get("RtFb_FeedbackSecret");
@@ -19,19 +24,18 @@
   my $trailer       = RT->Config->Get("RtFb_MailTrailer")->{$lang};
   my $feedbackForm  = RT->Config->Get("RtFb_FeedbackForm");
 
-  my $subject = $feedbackForm->{subject}{$lang};
-
+  my $subject      = $feedbackForm->{subject}{$lang};
   my $feedbackList = $feedbackForm->{selection};
 
-  my $hash = md5_hex($ticket_id . $secret);
-  my $feedback_link = "$url_root/$ticket_id/$hash";
+  my $hash          = md5_hex($ticket_id . $secret);
+  my $feedback_link = "$url_root?ticket=$ticket_id\&md5=$hash";
 
   my $feedbacks = '<table width="350"><tr>';
   for my $fb (@$feedbackList){
       my $value = $fb->{value};
       my $label = $fb->{text}{$lang};
       my $image = $fb->{image};
-      $feedbacks .= qq{<td><a href="$feedback_link/$value"><img width="75" src="$image" alt="$label"/><br/>$label</a></td>\n};
+      $feedbacks .= qq{<td><a href="$feedback_link\&feedback=$value"><img width="75" src="$image" alt="$label"/><br/>$label</a></td>\n};
   }
   $feedbacks .= '</tr></table>';
 

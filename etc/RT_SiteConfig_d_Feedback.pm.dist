@@ -1,25 +1,94 @@
-### Adapt and add to $RTHOME/etc/RT_SiteConfig.pm
+# Any configuration directives you include  here will override 
+# RT's default configuration file, RT_Config.pm
+#
+# This file contains strings used in Feedback handling via RtFb as well
+# as in multilingual auto reply scrips/templates
+#
+# Fritz Zaucker <fritz.zaucker@oetiker.ch>
+# Oetiker+Partner AG
+# 2018-08-28
 
+use utf8;
+
+Set($RtFb_AutoReply, {
+  greeting => {
+    de => 'Lieber Kunde, liebe Kundin',
+    fr => 'Cher client / chère cliente',
+    en => 'Dear customer',
+    it => 'Gentile cliente',
+  },
+  intro1 => {
+    de => 'Vielen Dank für Ihre Nachricht mit dem Betreff',
+    fr => 'Nous vous remercions pour votre message au sujet du',
+    en => 'Thank you for your message with the subject',
+    it => q{Molte grazie per il suo messaggio con l'oggetto},
+  },
+  intro2 => {
+    de => 'und dem unten zusammengefassten Inhalt',
+    fr => 'et des informations communiquées ci-dessous',
+    en => ', a summary of which appears below',
+    it => 'e il contenuto riepilogato di seguito',
+  },
+  busy1 => {
+    de => 'Unser Kundendienst ist im Moment stark ausgelastet. Es kann bis zu 48 Stunden dauern, bis Ihre Anfrage beantwortet werden kann.</br>In der Zwischenzeit können Sie auf unsere Wissensdatenbank zurückgreifen:',
+    fr => q{Notre service clientèle est actuellement très occupé. La réponse à votre demande peut prendre jusqu'à 48 heures.</br>En attendant, vous pouvez accéder à notre base de connaissances:},
+    en => 'Our customer service is currently very busy. It can take up to 48 hours for your request to be answered.</br>In the meantime, you can access our knowledge database:',
+    it => 'Il nostro servizio clienti è attualmente molto occupato. Possono essere necessarie fino a 48 ore per rispondere alla vostra richiesta.</br>Nel frattempo, è possibile accedere alla nostra base di conoscenze:',
+  },
+  busy2 => {
+    de => 'Bitte entschuldigen Sie die Unannehmlichkeiten',
+    fr => 'Veuillez excuser le désagrément',
+    en => 'Please excuse the inconvenience',
+    it => q{È pregata di scusare l'inconveniente},
+  },
+  working => {
+    de => 'Werktags antworten wir Ihnen normalerweise innerhalb von 24 Stunden. Die Ticketnummer ist',
+    fr => 'Pendant les jours ouvrables nous vous répondons entre 24 heures. Le numéro de ticket est',
+    en => 'On weekdays we usually respond within 24 hours. The ticket number is',
+    it => 'Di solito, durante i giorni feriali, rispondiamo entro 24 ore. Il numero del ticket è',
+  },
+  response => {
+    de => 'Bitte nutzen Sie diese Nummer bei Rückfragen oder Erläuterungen in der Betreffzeile Ihrer E-Mails oder antworten Sie direkt auf diese E-Mail.',
+    fr => 'Nous vous prions d’utiliser ce numéro comme référence pour vos questions supplémentaires dans le sujet de votre e-mail ou répondez directement à cet e-mail.',
+    en => 'Please use this number for further questions or explanations in the subject line of your e-mail or reply directly to this email',
+    it => q{È pregata di utilizzarlo in caso di ulteriori domande o chiarimenti nella riga dell'oggetto di una e-mail o di rispondere direttamente a questa e-mail},
+  },
+  trailer => {
+    de => 'Vielen Dank!</br>Ihr switchplus Team',
+    fr => 'Nous vous remercions!</br>Votre team switchplus',
+    en => 'Thank you!</br>Your switchplus team',
+    it => 'Grazie!</br>Il suo team di switchplus',
+  }
+});  
+
+
+Set($RtFb_UpdateLanguageSecret, 'Xdsf78osdf');
 Set($RtFb_FeedbackSecret, 'dsf78osdf');
 #Set($RtFb_FeedbackURL,    'https://localhost:8520/REST/v1/feedback');
 Set($RtFb_FeedbackURL,    'https://rt-test.switchplus.ch:8520/REST/v1/feedback');
-Set($RtFb_FeedbackMail,   'support@oetiker.ch');
-Set($RtFb_FeedbackPhone,  '062 775 9907');
+Set($RtFb_FeedbackMail,   'info@switchplus.ch');
+Set($RtFb_FeedbackPhone,  '+41 (0) 848 69 69 69');
 
 Set($RtFb_FeedbackForm, {
      ticket => {
          de => 'Ticket',
          en => 'Ticket',
+         fr => 'Ticket',
+         it => 'Ticket',
      },
      question => {
-         de => q{Waren Sie zufrieden mit der Beantwortung Ihrer Anfrage?},
-         en => q{Where you satisfied with the answer to your request?},
+         de => q{Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?},
+         en => q{How satisfied were you with our employee's response?},
+         fr => q{Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?},
+         it => q{Quanto è soddisfatto della risposta del nostro impiegato?},
      },
      selection => [
          {
              text => {
-                 de => 'Zufrieden',
-                 en => 'Satisfied'
+                 de => 'Sehr zufrieden',
+                 en => 'Very satisfied',
+                 fr => 'Très satisfait',
+                 it => 'Molto soddisfatto',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
@@ -282,8 +351,10 @@ SpRS+v8BeCedwvsRT+4AAAAASUVORK5CYII=
          },
          {
              text => {
-                 de => 'Bedingt zufrieden',
-                 en => 'Partially satisfied'
+                 de => 'Zufrieden',
+                 en => 'Satisfied',
+                 fr => 'Satisfait',
+                 it => 'Soddisfatto',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
@@ -532,8 +603,10 @@ ACiUIAcAUChBDgCgUIIcAECJUkr/P9pGCdQnH+ArAAAAAElFTkSuQmCC
          },
          {
              text => {
-                 de => 'Teilweise unzufrieden',
-                 en => 'Partially unsatisfied'
+                 de => 'Bedingt zufrieden',
+                 en => 'Not very satisfied',
+                 fr => 'Satisfaction limitée',
+                 it => 'Soddisfazione limitata',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
@@ -750,7 +823,9 @@ U4IcAECmBDkAgEwJcgAAOSqK4v8D+gMVTvzDQKoAAAAASUVORK5CYII=
          {
              text => {
                  de => 'Unzufrieden',
-                 en => 'Unhappy',
+                 en => 'Unsatisfied',
+                 fr => 'Insatisfait',
+                 it => 'Insoddisfatto',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
@@ -1006,27 +1081,33 @@ lCAHAFAoQQ4AoFCCHABAoQQ5AIBCCXIAAIUS5AAACiXIAQAUSpADACiUIAcAUChBDgCgUIIcAECh
 BDkAgEIJcgAAhRLkAAAKJcgBABRKkAMAKJQgBwBQKEEOAKBQghwAQKEEOQCAQglyAACFEuQAAAol
 yAEAFEqQAwAolCAHAFAoQQ4AoFCCHABAoQQ5AIBCCXIAAIUS5AAACiXIAQAUSpADAChRSun/AGoC
 qAU0OfyYAAAAAElFTkSuQmCC
-             }
+             },
              value => 'unhappy',
          },
      ],
      details => {
-         de => 'Weitere Rückmeldungen (optional)',
-         en => 'Further feedback (optionally)'
+         de => 'Falls Sie noch weitere Anmerkungen haben, können Sie diese hier anbringen.',
+         en => 'If you have any further comments, you can make them here.',
+         fr => q{Si vous avez d'autres commentaires, vous pouvez les faire ici.},
+         it => 'Se ha ulteriori commenti, può formularli nella seguente casella.',
      },
      submit => {
          de => 'Abschicken',
-         en => 'Submit',
+         en => 'Send',
+         fr => 'Envoyer',
+         it => 'Inviare',
      },
      comment => {
          de => 'Ihr Kommentar',
          en => 'Your comment',
+         fr => 'Votre commentaire',
+         it => 'Il tuo commento',
      },
      subject => {
         en => 'Subject',
         de => 'Betreff',
-        fr => 'Subject FR',
-        it => 'Subject IT',
+        fr => 'Sujet',
+        it => q{l'oggetto},
      },
     }
 );
@@ -1035,42 +1116,43 @@ Set($RtFb_FeedbackResponse, {
      ticket => {
          de => 'Ticket',
          en => 'Ticket',
+         fr => 'Ticket',
+         it => 'Ticket',
      },
      response => {
-         de => q{Danke für Ihre Rückmeldung.},
+         de => q{Vielen Dank für Ihre Rückmeldung.},
          en => q{Thank you for your feedback.},
+         fr => q{Merci de votre feedback.},
+         it => q{Grazie per il suo feedback.},
      },
     }
 );
 
 Set(%RtFb_MailIntro, (
     de => q{<p>Guten Tag</p>
-
+ 
              <p>Konnten wir Ihr Problem lösen? Bitte teilen Sie uns mit,
-             ob unser Kundendienst Ihen behilflich sein konnte.</p>
+             ob unser Kundendienst Ihnen behilflich sein konnte.</p>
 
              <p>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</p>
             },
-    en => q{EN:<p>Guten Tag</p>
+    en => q{<p>Dear customer</p>
 
-             <p>Konnten wir Ihr Problem lösen? Bitte teilen Sie uns mit,
-             ob unser Kundendienst Ihen behilflich sein konnte.</p>
+             <p>Did we solve your problem? Please let us know if our customer service was helpful.</p>
 
-             <p>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</p>
-                        },
-    fr => q{FR:<p>Guten Tag</p>
+             <p>How satisfied were you with our employee's response?</p>
+          },
+    fr => q{<p>Bonjour,</p>
 
-             <p>Konnten wir Ihr Problem lösen? Bitte teilen Sie uns mit,
-             ob unser Kundendienst Ihen behilflich sein konnte.</p>
+             <p>Avons-nous résolu votre problème ? Veuillez nous faire savoir si notre service clientèle était utile. </p>
 
-             <p>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</p>
-                        },
-    it => q{IT:<p>Guten Tag</p>
+             <p>Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?</p>
+          },
+    it => q{<p>Buongiorno</p>
 
-             <p>Konnten wir Ihr Problem lösen? Bitte teilen Sie uns mit,
-             ob unser Kundendienst Ihen behilflich sein konnte.</p>
+             <p>Abbiamo risolto il suo problema? Vi preghiamo di comunicarci se il nostro servizio clienti è stato di aiuto.</p>
 
-             <p>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</p>
+             <p>Quanto è soddisfatto della risposta del nostro impiegato?</p>
            },
 ));
 Set(%RtFb_MailTrailer, (
@@ -1259,7 +1341,7 @@ SUVORK5CYII=" alt="switchplus logo" />},
     fr => 'Tel FR',
     it => 'Tel IT',
   },
-  phoneNumber  => '044 253 99 21',
+  phoneNumber  => '+41 (0) 848 69 69 69',
   url          => 'https://switchplus.ch',
   
   facebookUrl  => 'http://facebook.com/switchplus',
@@ -1403,5 +1485,7 @@ liqbJCFsPEdKpq8S43Otj1XOieQctjXLViozw6cW0L9iNJDjQwOFbAYlHR3xRl6Ov86kKWOAfsnf
 oJXTeQHKOn2SvnXy+y/gk+nh9WjcCgAAAABJRU5ErkJggg==" alt="twitter" />},
 )
 );
+
+
 
 1;

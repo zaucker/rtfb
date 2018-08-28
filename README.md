@@ -21,11 +21,13 @@ RT Setup
     };
     return 0 if exists $IGNORED_A->{$queueName};
 
-  * Add config variables from etc/RT_SiteConfig.pm.dist to
-    $RTHOME/etc/RT_SiteConfig.pm and adapt to local requirements
+  * Adapt config variables in RT_SiteConfig_d_Feedback.pm.dist to your local
+    requirements and copy this file to $RTHOME/etc/RT_SiteConfig.d/Feedback.pm
 
-    Create a RtFb_FeedbackSecret config variable in your
-    RT_SiteConfig.pm (optionally, defaults to value in lib/RtFb.pm)
+    Create a RtFb_FeedbackSecret config variable in Feedback.pm
+    (optionally, defaults to value in lib/RtFb.pm)
+
+    Restart the rt service after changing the above config file.
 
   * Create Ticket Customfields:
 
@@ -48,6 +50,11 @@ RT Setup
     - Template: Blank
 
     User custom action code from etc/RT-UpdateUserLanguage.scrip
+
+  * Multilingual Autoresponse scrips:
+
+    - create templates Autoreply_multilingual and Autoreply_multilingual_busy
+      and configure the autoreply scrip to use one of the
 
 SETUP
 -----

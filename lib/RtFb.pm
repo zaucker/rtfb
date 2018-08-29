@@ -43,8 +43,6 @@ sub rtInit {
         $app->log->debug('starting RT connection');
         RT->LoadConfig();
         RT->Init();
-
-        $app->log->debug('initialized');
         $app->log->debug('RT ready');
         $init = 1;
     }
@@ -100,10 +98,8 @@ sub startup {
     $app->secrets([$cfg->{GENERAL}{secret}]);
     $app->sessions->cookie_name('rtfb');
 
-
     my $r = $app->routes->under( sub {
         my $c = shift;
-
         $c->app->rtInit();
         return 1;
     });

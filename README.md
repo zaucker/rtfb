@@ -72,7 +72,7 @@ SETUP
 RUNNING
 -------
 
-* Run rtfb like this:
+* Run rtfb as user root like this:
 
      RTHOME=/opt/rt441 bin/rtfb.pl daemon --listen 'http://*:8520'
 

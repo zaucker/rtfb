@@ -2,9 +2,8 @@
 Description=RT Feedback Form Service
 
 [Service]
+# must run as root !!!
 Type=simple
-User=rt4
-Group=rt4
 Environment=RTHOME=/opt/rt441
 Environment=RTFB_CFG=/opt/rtfb/etc/rtfb.cfg
 Environment=MOJO_MODE=production

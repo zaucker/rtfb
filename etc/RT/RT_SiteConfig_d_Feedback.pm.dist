@@ -1101,13 +1101,13 @@ qAU0OfyYAAAAAElFTkSuQmCC
          de => 'Ihr Kommentar',
          en => 'Your comment',
          fr => 'Votre commentaire',
-         it => 'Il tuo commento',
+         it => 'Il suo commento',
      },
      subject => {
         en => 'Subject',
         de => 'Betreff',
-        fr => 'Sujet',
-        it => q{l'oggetto},
+        fr => 'Objet',
+        it => 'Oggetto',
      },
     }
 );
@@ -1157,18 +1157,16 @@ Set(%RtFb_MailIntro, (
 ));
 Set(%RtFb_MailTrailer, (
    de => qq{
-       <p>Freundliche Grüsse</p>
-       <p>Ihr switchplus Team</p>
+       <p>Freundliche Grüsse</br>Ihr switchplus Team</p>
    },
    en => qq{
-       <p>Best regards</p>
-       <p>Your switchplus team</p>
+       <p>Best wishes,</br>Your switchplus team</p>
    },
    fr => qq{
-       <p>FR: best regards.</p>
+       <p>Meilleures salutations,</br>votre equipe de switchplus</p>
    },
    it => qq{
-       <p>IT: best regards.</p>
+       <p>Cordiali saluti,</br>la squadra di switchplus</p>
    },
 ));
 
@@ -1337,9 +1335,9 @@ SUVORK5CYII=" alt="switchplus logo" />},
   },
   phone => {
     de => 'Tel.',
-    en => 'phone',
-    fr => 'Tel FR',
-    it => 'Tel IT',
+    en => 'Phone',
+    fr => 'Tél.',
+    it => 'Tel.',
   },
   phoneNumber  => '+41 (0) 848 69 69 69',
   url          => 'https://switchplus.ch',

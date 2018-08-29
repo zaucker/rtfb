@@ -1,3 +1,3 @@
-ETC = $(PACKAGE).cfg.dist RT-Feedback-Template.dist
+ETC = $(PACKAGE).cfg.dist rtfb.service.dist
 EXTRA_DIST = $(ETC)
 sysconf_DATA = $(ETC)

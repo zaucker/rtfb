@@ -1,3 +1,6 @@
+1.1.0 2018-09-11 Fritz Zaucker
+- Add Feedback status to lifecycles
+
 1.0.0 2018-08-28 Fritz Zaucker
 - add multilingual templates and scrips for autoresponse
 - move text variables to separate config file

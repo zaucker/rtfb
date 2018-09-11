@@ -1,0 +1,15 @@
+# Custom condition:
+# get ticket object
+my $ticket = $self->TicketObj;
+
+# run scrip action if ticket is set to status feedback
+# $RT::Logger->info("######## status=", $ticket->Status);
+
+return 1 if $ticket->Status eq 'feedback';
+# otherwise do nothing
+return 0;
+
+### Scrip Settings:
+# Condition: User Defined
+# Action:    Notify Requestors
+# Template:  FeedbackOnResolve

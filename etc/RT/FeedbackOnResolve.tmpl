@@ -35,7 +35,7 @@
       my $value = $fb->{value};
       my $label = $fb->{text}{$lang};
       my $image = $fb->{image};
-      $feedbacks .= qq{<td><a href="$feedback_link\&feedback=$value"><img width="75" src="$image" alt="$label"/><br/>$label</a></td>\n};
+      $feedbacks .= qq{<td valign="top"><a href="$feedback_link\&feedback=$value"><img width="75" src="$image" alt="$label"/><br/>$label</a></td>\n};
   }
   $feedbacks .= '</tr></table>';
 

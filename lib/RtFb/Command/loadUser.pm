@@ -33,32 +33,43 @@ sub run {
     open(my $fh, '<', $filename) or 
         die "Couldn't open $filename: $!";
 
-    my $n = 0;
+    my $valid = 0;
+    my $lines = 0;
     my $lang = 0;
     my $failed = 0;
+    my $unknownUsers = 0;
     my $user = RT::User->new(RT->SystemUser);
     while (<$fh>) {
-        chomp;
+        $lines++;
         next if /^\?\?\?/;
-        my ($custId, $eMail, $language) = split ';', lc($_);
-        next unless $eMail and $lang;
+        chomp;
+        my ($custId, $language, $eMail) = split ';', lc($_);
+        next unless $eMail and $language;
+        $valid++;
 
         my ($ret, $msg) = $user->LoadByEmail($eMail);
-        if ($ret and $language ne $user->Lang) { # user found
-            my ($ret, $msg) = $user->SetLang($language);
-            if ($ret) {
-                $lang++;
-                say "Language set for $custId: $language";
-            }
-            else {
-                say STDERR "Failed to set lang=$language on email=$eMail: $msg";
-                $failed++;
+        if ($ret) { # user found
+            my $userLang = $user->Lang if $ret;
+            if (not $userLang or $language ne $userLang) { # set language
+                my ($ret, $msg) = $user->SetLang($language);
+                if ($ret) {
+                    $lang++;
+#                    say "Language set for $custId: $language";
+                }
+                else {
+                    say STDERR "Failed to set lang=$language on email=$eMail: $msg";
+                    $failed++;
+                }
             }
         }
-        print '.' unless $n%1000;
-        $n++;
+        else {
+            say STDERR "User not found: $eMail: $msg";
+            $unknownUsers++;
+        }
+        print '.' unless $lines and $lines % 10;
+        print " $lines\n" unless $lines and $lines % 500;
     }
-    say "\nRead valid $n lines, $lang languages set, $failed failed.";
+    say "\nRead $lines lines ($valid valid), $unknownUsers unknown users, $lang languages set, $failed failed.";
     close $fh;
 }
 

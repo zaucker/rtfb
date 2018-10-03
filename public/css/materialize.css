@@ -6510,7 +6510,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: text;
   -webkit-transition: color .2s ease-out, -webkit-transform .2s ease-out;
   transition: color .2s ease-out, -webkit-transform .2s ease-out;

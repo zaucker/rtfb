@@ -29,7 +29,7 @@
 % }
         </div>
         <div class="input-field">
-          <label for="textarea1" style="font-size: 24px; position: relative;"><%= $t->{details}{$lang} %><br/></label>
+          <label for="textarea1" style="position: relative;"><%= $t->{details}{$lang} %> Kommentar<br/></label>
           <textarea name="comment" id="textarea1" class="materialize-textarea" placeholder="<%= $t->{comment}{$lang} %>"><%= $comment %></textarea>
         </div>
         <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color:

@@ -10,6 +10,13 @@
 
 use utf8;
 
+Set($RtFb_UpdateLanguageSecret, 'Xdsf78osdf');
+Set($RtFb_FeedbackSecret, 'dsf78osdf');
+#Set($RtFb_FeedbackURL,    'http://localhost:8520/REST/v1/feedback');
+Set($RtFb_FeedbackURL,    'https://rt-test.switchplus.ch:8520/REST/v1/feedback');
+Set($RtFb_FeedbackMail,   'info@switchplus.ch');
+Set($RtFb_FeedbackPhone,  '+41 (0) 848 69 69 69');
+
 Set($RtFb_AutoReply, {
   greeting => {
     de => 'Lieber Kunde, liebe Kundin',
@@ -61,14 +68,6 @@ Set($RtFb_AutoReply, {
   }
 });  
 
-
-Set($RtFb_UpdateLanguageSecret, 'Xdsf78osdf');
-Set($RtFb_FeedbackSecret, 'dsf78osdf');
-#Set($RtFb_FeedbackURL,    'https://localhost:8520/REST/v1/feedback');
-Set($RtFb_FeedbackURL,    'https://rt-test.switchplus.ch:8520/REST/v1/feedback');
-Set($RtFb_FeedbackMail,   'info@switchplus.ch');
-Set($RtFb_FeedbackPhone,  '+41 (0) 848 69 69 69');
-
 Set($RtFb_FeedbackForm, {
      ticket => {
          de => 'Ticket',
@@ -77,18 +76,18 @@ Set($RtFb_FeedbackForm, {
          it => 'Ticket',
      },
      question => {
-         de => q{Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?},
-         en => q{How satisfied were you with our employee's response?},
-         fr => q{Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?},
-         it => q{Quanto è soddisfatto della risposta del nostro impiegato?},
+         de => q{<br/><br/><b>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</b>},
+         en => q{<br/><br/><b>How satisfied were you with our employee's response?</b>},
+         fr => q{<br/><br/><b>Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?</b>},
+         it => q{<br/><br/><b>Quanto è soddisfatto della risposta del nostro impiegato?</b>},
      },
      selection => [
          {
              text => {
-                 de => 'Sehr zufrieden',
-                 en => 'Very satisfied',
-                 fr => 'Très satisfait',
-                 it => 'Molto soddisfatto',
+                 de => 'Sehr&nbsp;zufrieden',
+                 en => 'Very&nbsp;satisfied',
+                 fr => 'Très&nbsp;satisfait',
+                 it => 'Molto&nbsp;soddisfatto',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
@@ -603,10 +602,10 @@ ACiUIAcAUChBDgCgUIIcAECJUkr/P9pGCdQnH+ArAAAAAElFTkSuQmCC
          },
          {
              text => {
-                 de => 'Bedingt zufrieden',
-                 en => 'Not very satisfied',
-                 fr => 'Satisfaction limitée',
-                 it => 'Soddisfazione limitata',
+                 de => 'Bedingt&nbsp;zufrieden',
+                 en => 'Not&nbsp;very&nbsp;satisfied',
+                 fr => 'Satisfaction&nbsp;limitée',
+                 it => 'Soddisfazione&nbsp;limitata',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
@@ -1134,39 +1133,39 @@ Set(%RtFb_MailIntro, (
              <p>Konnten wir Ihr Problem lösen? Bitte teilen Sie uns mit,
              ob unser Kundendienst Ihnen behilflich sein konnte.</p>
 
-             <p>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</p>
+             <p><br/><b>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</b></p>
             },
     en => q{<p>Dear customer</p>
 
              <p>Did we solve your problem? Please let us know if our customer service was helpful.</p>
 
-             <p>How satisfied were you with our employee's response?</p>
+             <p><br/><b>How satisfied were you with our employee's response?</b></p>
           },
     fr => q{<p>Bonjour,</p>
 
              <p>Avons-nous résolu votre problème ? Veuillez nous faire savoir si notre service clientèle était utile. </p>
 
-             <p>Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?</p>
+             <p><br/><b>Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?</b></p>
           },
     it => q{<p>Buongiorno</p>
 
              <p>Abbiamo risolto il suo problema? Vi preghiamo di comunicarci se il nostro servizio clienti è stato di aiuto.</p>
 
-             <p>Quanto è soddisfatto della risposta del nostro impiegato?</p>
+             <p><br/><b>Quanto è soddisfatto della risposta del nostro impiegato?</b></p>
            },
 ));
 Set(%RtFb_MailTrailer, (
    de => qq{
-       <p>Freundliche Grüsse</br>Ihr switchplus Team</p>
+       <p><br/><br/><br/>Freundliche Grüsse</br>Ihr switchplus Team</p>
    },
    en => qq{
-       <p>Best wishes,</br>Your switchplus team</p>
+       <p><br/><br/><br/>Best wishes,</br>Your switchplus team</p>
    },
    fr => qq{
-       <p>Meilleures salutations,</br>votre equipe de switchplus</p>
+       <p><br/><br/><br/>Meilleures salutations,</br>votre equipe de switchplus</p>
    },
    it => qq{
-       <p>Cordiali saluti,</br>la squadra di switchplus</p>
+       <p><br/><br/><br/>Cordiali saluti,</br>la squadra di switchplus</p>
    },
 ));
 

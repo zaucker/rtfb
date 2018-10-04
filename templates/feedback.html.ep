@@ -7,14 +7,13 @@
   <div class="row">
     <div class="col s12">
       <br>
-        <p class="flow-text"><%= $t->{ticket}{$lang} %>&nbsp;<%= $ticketId %>: (<%= $subject %>)<br>
-           <%= $t->{question}{$lang} %>
+        <p class="flow-text"><%= $t->{ticket}{$lang} %>&nbsp;<%= $ticketId %>: (<%= $subject %>)<br><br>
+           <b><%= $t->{question}{$lang} %></b>
         </p>
 
       <form name="feedbackForm" id="orderform" action="<%= $feedbackUrl %>/save" method="post">
         <input type="hidden" name="secret"   value="<%= "xyz$md5" %>">
         <input type="hidden" name="ticketId" value="<%= $ticketId %>">
-
         <div id="radio">
 % for my $s (@{$t->{selection}}) {
 %     my $checked = $s->{value} eq $feedback ? 'checked' : '';
@@ -29,7 +28,7 @@
 % }
         </div>
         <div class="input-field">
-          <label for="textarea1" style="position: relative;"><%= $t->{details}{$lang} %> Kommentar<br/></label>
+          <label for="textarea1" style="position: relative;"><%= $t->{details}{$lang} %><br/></label>
           <textarea name="comment" id="textarea1" class="materialize-textarea" placeholder="<%= $t->{comment}{$lang} %>"><%= $comment %></textarea>
         </div>
         <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color:

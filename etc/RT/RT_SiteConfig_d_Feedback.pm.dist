@@ -76,10 +76,10 @@ Set($RtFb_FeedbackForm, {
          it => 'Ticket',
      },
      question => {
-         de => q{<br/><br/><b>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</b>},
-         en => q{<br/><br/><b>How satisfied were you with our employee's response?</b>},
-         fr => q{<br/><br/><b>Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?</b>},
-         it => q{<br/><br/><b>Quanto è soddisfatto della risposta del nostro impiegato?</b>},
+         de => q{Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?},
+         en => q{How satisfied were you with our employee's response?},
+         fr => q{Dans quelle mesure êtes-vous satisfait de la réponse de notre employé?},
+         it => q{Quanto è soddisfatto della risposta del nostro impiegato?},
      },
      selection => [
          {

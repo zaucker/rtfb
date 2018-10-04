@@ -84,10 +84,10 @@ Set($RtFb_FeedbackForm, {
      selection => [
          {
              text => {
-                 de => 'Sehr&nbsp;zufrieden',
-                 en => 'Very&nbsp;satisfied',
-                 fr => 'Très&nbsp;satisfait',
-                 it => 'Molto&nbsp;soddisfatto',
+                 de => 'Sehr zufrieden',
+                 en => 'Very satisfied',
+                 fr => 'Très satisfait',
+                 it => 'Molto soddisfatto',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
@@ -602,10 +602,10 @@ ACiUIAcAUChBDgCgUIIcAECJUkr/P9pGCdQnH+ArAAAAAElFTkSuQmCC
          },
          {
              text => {
-                 de => 'Bedingt&nbsp;zufrieden',
-                 en => 'Not&nbsp;very&nbsp;satisfied',
-                 fr => 'Satisfaction&nbsp;limitée',
-                 it => 'Soddisfazione&nbsp;limitata',
+                 de => 'Bedingt zufrieden',
+                 en => 'Not very satisfied',
+                 fr => 'Satisfaction limitée',
+                 it => 'Soddisfazione limitata',
              },
              image => q{data:image/png;base64,
 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg

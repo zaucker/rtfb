@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col s12">
       <br>
-        <p class="flow-text"><%= $t->{ticket}{$lang} %>&nbsp;<%= $ticketId %>: (<%= $subject %>)<br>
+        <p class="flow-text"><%= $t->{ticket}{$lang} %>&nbsp;<%= $ticketId %>: (<%= $subject %>)<br><br>
            <%= $t->{response}{$lang} %>
         </p>
     </div>

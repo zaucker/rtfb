@@ -19,12 +19,16 @@ sub getForm {
     my $feedback = $c->param('feedback');
     my $md5      = $c->param('md5');
     my $check    = $c->app->md5Hash($ticketId);
-    $c->app->log->debug("getForm(): ticketId=$ticketId, md5=$md5, fd=$feedback");
+#    $c->app->log->debug("getForm(): ticketId=$ticketId, md5=$md5, fd=$feedback, check=$check");
 
     if ($md5 eq $check) {
+        $c->app->log->warn("ticketId=$ticketId");
         my $ticket = RT::Ticket->new(RT->SystemUser);
-        $ticket->Load($ticketId);
+        my ($ret, $msg) = $ticket->Load($ticketId);
+#        $c->app->log->debug("ret=$ret");
+#        $c->app->log->debug("msg=$msg") if $msg;
         my $subject = $ticket->Subject;
+#        $c->app->log->debug("subject=$subject");
         
         my $comment = $ticket->CustomFieldValues('Feedback Kommentar')->Next;
         $comment = $comment->Content if defined $comment;
@@ -40,7 +44,7 @@ sub getForm {
         $c->render('feedback');
     }
     else {
-        $c->app->log->debug("ticketId=$ticketId, md5=$md5, check=$check, secret=" . $c->app->md5secret);
+#        $c->app->log->debug("ticketId=$ticketId, md5=$md5, check=$check, secret=" . $c->app->md5secret);
         $c->render(text => '<h1>Unauthorized</h1>', status => 403);
     }
 }
@@ -90,7 +94,7 @@ sub save {
         $c->render('response');
     }
     else {
-        $c->app->log->debug("ticketId=$ticketId, check=$check, secret=$secret");
+#        $c->app->log->debug("ticketId=$ticketId, check=$check, secret=$secret");
         $c->render(text => '<h1>Unauthorized</h1>', status => 403);
     }
 }

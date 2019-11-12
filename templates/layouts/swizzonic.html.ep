@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="de-DE" class="no-svg"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="profile" href="http://gmpg.org/xfn/11">  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KSXCB9');</script>  <script type="text/javascript">/* Google Analytics Opt-Out WordPress by WP-Buddy | https://wp-buddy.com/products/plugins/google-analytics-opt-out */
+				var gaoop_property    = 'UA-11425952-1';
+		var gaoop_disable_str = 'ga-disable-' + gaoop_property;
+		if ( document.cookie.indexOf( gaoop_disable_str + '=true' ) > -1 ) {
+			window[ gaoop_disable_str ] = true;
+		}
+
+		function gaoop_analytics_optout() {
+			document.cookie             = gaoop_disable_str + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+			window[ gaoop_disable_str ] = true;
+			alert('Danke. Wir haben ein Cookie gesetzt, damit dich Google Analytics nicht mehr trackt.');		}</script> <link type="text/css" media="all" href="https://switchplus.ch/wp-content/cache/autoptimize/css/autoptimize_f9e87c9944cce31d67404b2f513fd7e9.css" rel="stylesheet" /><title>switchplus.ch | Home</title><meta name="description" content="switchplus ist Experte für die Internet-Präsenz und Domain-Namen. Das Angebot richtet sich an Unternehmen und Privatpersonen." /><meta property="og:image" content="https://www.switchplus.ch/wp-content/uploads/cropped-favicon-switchplus.png" /><meta property="og:locale" content="de_DE" /><meta property="og:type" content="website" /><meta property="og:title" content="switchplus.ch | Home" /><meta property="og:description" content="switchplus ist Experte für die Internet-Präsenz und Domain-Namen. Das Angebot richtet sich an Unternehmen und Privatpersonen." /><meta property="og:url" content="https://switchplus.ch/" /><meta property="og:site_name" content="switchplus.ch" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:site" content="@switchplus" /><meta name="twitter:title" content="switchplus.ch | Home" /><meta name="twitter:description" content="switchplus ist Experte für die Internet-Präsenz und Domain-Namen. Das Angebot richtet sich an Unternehmen und Privatpersonen." /><meta name="twitter:image" content="https://www.switchplus.ch/wp-content/uploads/cropped-favicon-switchplus.png" /><link rel="canonical" href="https://switchplus.ch/" /><meta name="google-site-verification" content="bLteD5o5K2BHtraduw-o1YSs17J0x5tcCfQ9cgRXw4U" /><link rel='dns-prefetch' href='//fonts.googleapis.com' /><link rel='dns-prefetch' href='//use.fontawesome.com' /><link rel='dns-prefetch' href='//s.w.org' /><link href='https://fonts.gstatic.com' crossorigin rel='preconnect' /><link rel="alternate" type="application/rss+xml" title="switchplus.ch &raquo; Feed" href="https://switchplus.ch/feed/" /> <script type="text/javascript">window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/switchplus.ch\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.4"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);</script> <style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style><link rel='stylesheet' id='_presence-fonts-css'  href='https://fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C400i%2C500%2C700%2C900%7CMontserrat%3A700i&#038;subset=latin%2Clatin-ext&#038;ver=5.2.4' type='text/css' media='all' /><link rel='stylesheet' id='dashicons-css'  href='https://switchplus.ch/wp-includes/css/dashicons.min.css?ver=5.2.4' type='text/css' media='all' /><link rel='stylesheet' id='load-fa-css'  href='https://use.fontawesome.com/releases/v5.2.0/css/all.css?ver=5.2.0' type='text/css' media='all' /><link rel='stylesheet' id='tf-compiled-options-wdc-options-css'  href='https://switchplus.ch/wp-content/cache/autoptimize/css/autoptimize_single_ed104ffed847c67ea57b6aed12c96e4d.css?ver=5.2.4' type='text/css' media='all' /><link rel='stylesheet' id='wdcGoogleFonts-css'  href='//fonts.googleapis.com/css?family=Poppins%3A300&#038;ver=5.2.4' type='text/css' media='all' /> <script type='text/javascript' src='https://switchplus.ch/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp'></script> <link rel='https://api.w.org/' href='https://switchplus.ch/wp-json/' /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://switchplus.ch/xmlrpc.php?rsd" /><link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://switchplus.ch/wp-includes/wlwmanifest.xml" /><link rel="alternate" type="application/json+oembed" href="https://switchplus.ch/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fswitchplus.ch%2F" /><link rel="alternate" type="text/xml+oembed" href="https://switchplus.ch/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fswitchplus.ch%2F&#038;format=xml" /><style type="text/css">/** Google Analytics Opt Out Custom CSS **/.gaoop {color: #ffffff; line-height: 2; position: fixed; bottom: 0; left: 0; width: 100%; -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); -moz-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); background-color: #0E90D2; padding: 0; margin: 0; } .gaoop a {color: #67C2F0; text-decoration: none; } .gaoop a:hover {color: #ffffff; text-decoration: underline; } .gaoop-info-icon {position: relative; margin: 0; padding: 0; text-align: center; vertical-align: top; display: inline-block; width: 5%; } .gaoop-close-icon {position: relative; opacity: 0.5; ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; filter: alpha(opacity=50); -moz-opacity: 0.5; -khtml-opacity: 0.5; margin: 0; padding: 0; text-align: center; vertical-align: top; display: inline-block; width: 5%; } .gaoop-close-icon:hover {z-index: 1; opacity: 1; ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; filter: alpha(opacity=100); -moz-opacity: 1; -khtml-opacity: 1; } .gaoop_closed .gaoop-opt-out-link, .gaoop_closed .gaoop-close-icon {display: none; } .gaoop_closed {width: 55px; right: 0; left: auto; opacity: 0.5; ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; filter: alpha(opacity=50); -moz-opacity: 0.5; -khtml-opacity: 0.5; } .gaoop_closed:hover {opacity: 1; ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; filter: alpha(opacity=100); -moz-opacity: 1; -khtml-opacity: 1; } .gaoop_closed .gaoop-opt-out-content {display: none; } .gaoop_closed .gaoop-info-icon {width: 100%; } .gaoop-opt-out-content {display: inline-block; width: 90%; vertical-align: top; }</style><!--[if lt IE 9]><link rel="stylesheet" href="https://switchplus.ch/wp-content/plugins/lightweight-grid-columns/css/ie.min.css" /> <![endif]--><link rel="alternate" href="https://switchplus.ch/" hreflang="de" /><link rel="alternate" href="https://switchplus.ch/en/home/" hreflang="en" /><link rel="alternate" href="https://switchplus.ch/fr/home/" hreflang="fr" /><link rel="alternate" href="https://switchplus.ch/it/home/" hreflang="it" /><style type='text/css'>#masthead{background-image:url('https://www.switchplus.ch/wp-content/uploads/Rectangle-4.jpg');}</style><link rel="icon" href="https://switchplus.ch/wp-content/uploads/cropped-favicon-switchplus-32x32.png" sizes="32x32" /><link rel="icon" href="https://switchplus.ch/wp-content/uploads/cropped-favicon-switchplus-192x192.png" sizes="192x192" /><link rel="apple-touch-icon-precomposed" href="https://switchplus.ch/wp-content/uploads/cropped-favicon-switchplus-180x180.png" /><meta name="msapplication-TileImage" content="https://switchplus.ch/wp-content/uploads/cropped-favicon-switchplus-270x270.png" /><style type="text/css" id="wp-custom-css">* {
+  box-sizing: border-box;
+}
+
+.centered-image, .wp-caption.aligncenter {
+  margin: 0;
+}
+
+.uagb-columns__columns-2 > .uagb-column__wrap {
+	text-align: left;
+	width: 25%;
+}
+
+.colRight {
+	text-align: left;
+	width: 65% !important;
+}
+
+
+.gfield_checkbox-horizontal ul li {
+  display: inline-block;
+  margin-right: 0.7em;
+}
+
+/* Presence Panel */
+#panel3 .colLeft {
+	float: left;
+}
+
+.uagb-columns__columns-2 > .uagb-column__wrap {
+	display: inline-block;
+}
+
+/* Elements */
+button {
+  line-height: 1.2 !important;
+}
+
+p.more_info {
+  display: flex;
+}
+
+p.more_info a:last-child {
+  margin: 3px 0 0 8px;
+}
+
+.entry-title, h1 {
+  margin: 0 0 .5em;
+}
+
+button {
+  font-size: 1rem;
+}
+
+.footer_widget h2 {
+	color: #fea36e !important;
+}
+
+.continue-reading a, .ddownload-button, .pure-form button, a.button, body div.fca_qc_quiz button.fca_qc_button, button, input[type="button"], input[type="reset"], input[type="submit"],
+body.blog .continue-reading a, body.single-post .continue-reading a,
+#domain-form #wdc-style .large button#Submit{
+	background-color: #fea36e !important;
+	border: 1px solid #000 !important;
+	color: #000 !important;
+}
+
+.continue-reading a:hover, .ddownload-button:hover, .pure-form button, a.button:hover, body div.fca_qc_quiz button.fca_qc_button:hover, button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover,
+body.blog .continue-reading a:hover, body.single-post .continue-reading a:hover,
+#domain-form #wdc-style .large button#Submit:hover{
+	border: 1px solid #000 !important;
+	color: #000 !important;
+}
+
+#domainName {
+	border-color: #000 !important;
+}
+
+.type-produkte .print {
+    margin-left: 8px;
+}
+
+/* Header */
+
+/* Navigation */
+#nav-above-menu-1, #nav-above-menu-1-loggedin {
+  margin: -2px 2em 0 0;
+}
+
+.navigation-above .navigation-above.menu li a {
+	border-right: 1px solid #fff;
+	color: #000;
+}
+
+
+/*
+ * Home > sections
+ */
+
+.home article {
+  margin-bottom: 0;
+}
+
+.home .site-content {
+  padding: 0;
+}
+
+
+/* Responsive */
+@media all and (max-width: 1024px) {
+  #navigation-above {
+    flex-flow: column;
+  }
+
+  #site-search {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .navigation-above .navigation-above.menu nav {
+    margin-bottom: 0.5em;
+  }
+
+  #nav-above-menu-1, #nav-above-menu-1-loggedin {
+    margin: 0;
+  }
+
+  #navigation-above .navigation-above {
+    margin: 1em 0;
+  }
+
+}
+
+@media all and (max-width: 768px) {
+  .home #panel1 form {
+    margin-bottom: 0.5em;
+  }
+	
+
+	.main-navigation ul {
+		display: flex;
+	}
+
+}
+
+@media all and (max-width: 600px) {
+	
+	#site-search .search-field {
+    width: calc(100% - 80px);
+	}
+
+  #navigation-above {
+    padding-bottom: 0;
+  }
+
+  .panel_target {
+    width: auto;
+  }
+	
+
+	footer.site-footer ul li a {
+    color: #fff;
+    line-height: 1.25em;
+    padding: 3px 0;
+    text-decoration: none;
+	}
+	
+	footer.site-footer .widget {
+		margin: 0 0 1.25em;
+    padding: 0;
+	}
+}
+
+/* Anpassungen für pre-Rebranding */
+#masthead {
+  background-image: none;
+	background-color: #fff;
+	padding: 0px;
+}
+
+body:not(.home) #masthead {
+	padding-bottom: 0px;
+}
+.navigation-above .menu a,
+.navigation-above .navigation-above.menu .main-navigation li:last-child a::before{
+    color: #fff;
+}
+
+.navigation-above .site-branding {
+    background: #fff;
+}
+
+
+footer.site-footer {
+  background: #000;
+}
+
+#site-search .search-submit {
+	background-color: #fea36e !important;
+	border-color: #000 !important;
+}
+
+
+.continue-reading a, .ddownload-button, .pure-form button, a.button, body div.fca_qc_quiz button.fca_qc_button, button, input[type="button"], input[type="reset"], input[type="submit"] {
+    border-radius: 24px;
+}
+
+#navigation-below
+{
+	background-color: #000;
+}
+.main-navigation a {
+	color: #fff;
+}
+
+ul#nav-below-menu li.current-menu-item a,
+ul#nav-below-menu li:hover a {	
+	color: #e38343 !important;
+}
+</style>
+</head>
+
+<body class="home page-template-default page page-id-66 wp-custom-logo group-blog no-sidebar _presence-front-page">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSXCB9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div id="page" class="site"> <a class="skip-link screen-reader-text" href="#content">Weiter zum Inhalt</a>
+    <header id="masthead" class="site-header" role="banner">
+      <div id='navigation-above' class='navigation-above logo-2menus-changeonlogin'>
+        <div class="site-branding">
+          <div class="site-branding-container">
+            <div class="site-custom-logo">
+              <a href="https://switchplus.ch/" class="custom-logo-link" rel="home"><img width="549" height="146" src="https://switchplus.ch/wp-content/uploads/logo_splus-swizzonic-1.gif" class="custom-logo" alt="switchplus.ch" data-copyright="" data-headline="logo_splus-swizzonic" data-description="" /></a>
+            </div>
+          </div>
+        </div>
+        <section id="navigation-above" class="navigation-above logo-2menus-changeonlogin menu">
+          <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle" aria-controls="top-menu" aria-expanded="false">Menu 1</button>
+
+            <div class="menu-login-benutzerkonto-eroeffnen-container">
+
+              <ul id="nav-above-menu-1" class="menu">
+                <li id="menu-item-82747" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-82747"><a href="https://switchplus.ch/news/">News</a></li>
+                <li id="menu-item-81340" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81340"><a href="https://switchplus.ch/kontakt/">Helpdesk 0848 69 69 69</a></li>
+                <li id="menu-item-80603" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-80603"><a target="_blank" rel="noopener noreferrer" href="https://switchie.ch/">Status</a></li>
+              </ul>
+            </div>
+          </nav>
+        </section>
+      </div>
+    </header>
+    
+    <div>
+      <%= content %>
+    </div>
+
+    <div id='footer' class='footer widgets-5'>
+      <footer class='site-footer'>
+        <div class='footer-top'>
+          <!-- <a href="https://www.switchplus.ch">switchplus Homepage</a> -->
+        </div>
+        <div class='footer-btm'>
+          <div class="footer_widget footer_widget_5">
+            <div id="text-1" class="widget widget_text">
+              <div class="textwidget"><p>© 2019 switchplus ag</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+</body>
+</html>

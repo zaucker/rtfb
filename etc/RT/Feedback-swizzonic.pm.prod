@@ -13,7 +13,7 @@ use utf8;
 Set($RtFb_UpdateLanguageSecret, 'Xdsf78osdf');
 Set($RtFb_FeedbackSecret, 'dsf78osdf');
 #Set($RtFb_FeedbackURL,    'http://localhost:8520/REST/v1/feedback');
-Set($RtFb_FeedbackURL,    'https://rt-test.switchplus.ch:8520/REST/v1/feedback');
+Set($RtFb_FeedbackURL,    'https://feedback.switchplus.ch/REST/v1/feedback');
 Set($RtFb_FeedbackMail,   'info@switchplus.ch');
 Set($RtFb_FeedbackPhone,  '+41 (0) 848 69 69 69');
 
@@ -1156,16 +1156,16 @@ Set(%RtFb_MailIntro, (
 ));
 Set(%RtFb_MailTrailer, (
    de => qq{
-       <p><br/><br/><br/>Freundliche Grüsse</br>Ihr Swizzonic Team</p>
+       <p><br/><br/><br/>Freundliche Grüsse</br>Ihr Swizzonic Team<br><br></p>
    },
    en => qq{
-       <p><br/><br/><br/>Best wishes,</br>Your Swizzonic team</p>
+       <p><br/><br/><br/>Best wishes,</br>Your Swizzonic team<br><br></p>
    },
    fr => qq{
-       <p><br/><br/><br/>Meilleures salutations,</br>votre equipe de Swizzonic</p>
+       <p><br/><br/><br/>Meilleures salutations,</br>votre equipe de Swizzonic<br><br></p>
    },
    it => qq{
-       <p><br/><br/><br/>Cordiali saluti,</br>la squadra di Swizzonic</p>
+       <p><br/><br/><br/>Cordiali saluti,</br>la squadra di Swizzonic<br><br></p>
    },
 ));
 

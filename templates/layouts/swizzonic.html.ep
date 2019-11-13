@@ -264,9 +264,9 @@ ul#nav-below-menu li:hover a {
             <div class="menu-login-benutzerkonto-eroeffnen-container">
 
               <ul id="nav-above-menu-1" class="menu">
-                <li id="menu-item-82747" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-82747"><a href="https://switchplus.ch/news/">News</a></li>
-                <li id="menu-item-81340" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81340"><a href="https://switchplus.ch/kontakt/">Helpdesk 0848 69 69 69</a></li>
-                <li id="menu-item-80603" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-80603"><a target="_blank" rel="noopener noreferrer" href="https://switchie.ch/">Status</a></li>
+                <li id="menu-item-82747" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-82747"><a href="https://switchplus.ch/news/" target="_blank">News</a></li>
+                <li id="menu-item-81340" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81340"><a href="https://switchplus.ch/kontakt/" target="_blank">Helpdesk 0848 69 69 69</a></li>
+                <li id="menu-item-80603" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-80603"><a target="_blank" rel="noopener noreferrer" href="https://switchie.ch/" target="_blank">Status</a></li>
               </ul>
             </div>
           </nav>
@@ -276,7 +276,7 @@ ul#nav-below-menu li:hover a {
 
     <div style="background: black; height: 30px"></div>
     
-    <div>
+    <div style="padding-left: 30px; padding-bottom: 30px">
       <%= content %>
     </div>
 

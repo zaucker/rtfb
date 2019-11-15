@@ -10,7 +10,7 @@
 
 use utf8;
 
-Set($RtFb_UpdateLanguageSecret, 'Xdsf78osdf');
+Set($RtFb_UpdateLanguageSecret, 'Languagecode-for-RT');
 Set($RtFb_FeedbackSecret, 'dsf78osdf');
 #Set($RtFb_FeedbackURL,    'http://localhost:8520/REST/v1/feedback');
 Set($RtFb_FeedbackURL,    'https://rt-test.switchplus.ch:8520/REST/v1/feedback');

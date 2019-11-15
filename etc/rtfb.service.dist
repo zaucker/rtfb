@@ -8,7 +8,7 @@ Environment=RTHOME=/opt/rt441
 Environment=RTFB_CFG=/opt/rtfb/etc/rtfb.cfg
 Environment=MOJO_MODE=production
 Environment=MOJO_LOG_LEVEL=error
-ExecStart=/opt/rtfb/bin/rtfb.pl prefork --accepts 100 --proxy --listen https://*:8520
+ExecStart=/opt/rtfb/prod/bin/rtfb.pl prefork --accepts 100 --proxy --listen https://*:8520
 ExecStop=/usr/bin/pkill -f 'rtfb.pl'
 Restart=always
 

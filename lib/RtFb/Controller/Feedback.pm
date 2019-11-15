@@ -10,6 +10,8 @@ RtFb::Controller::Feedback - Feedback service
 
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Util qw(dumper);
+use RT;
+use RT::Ticket;
 
 sub getForm {
     my $c = shift;

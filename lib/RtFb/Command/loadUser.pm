@@ -16,6 +16,7 @@ Read CSV file and set user data (language only at the moment)
 
 use Mojo::Base 'Mojolicious::Command';
 use RT -init;
+use RT::User;
 
 has description => 'Load user language from CSV file';
 has usage       => << "USAGE";

@@ -1,7 +1,7 @@
 RtFb
 ===
-Version: 0.1.0
-Date: 2018-06-19
+Version: 1.4.0
+Date: 2019-11-15
 
 Request Tracker feedback form handler
 
@@ -11,7 +11,7 @@ RT Setup
   * Create Queues "Feedback" and "UpdateUserLanguage"
 
     Make sure that there are no scrips doing funny things to tickets
-    in these queues. Specifically (SwitchPlus), add this code at the
+    in these queues. Specifically (Swizzonic AG), add this code at the
     beginning of the action preparation code of scrips "QueueMover"
     and "Merge Tickets of same Requestor":
 
@@ -21,13 +21,21 @@ RT Setup
     };
     return 0 if exists $IGNORED_A->{$queueName};
 
-  * Adapt config variables in RT_SiteConfig_d_Feedback.pm.dist to your local
-    requirements and copy this file to $RTHOME/etc/RT_SiteConfig.d/Feedback.pm
+  * Config:
 
-    Create a RtFb_FeedbackSecret config variable in Feedback.pm
-    (optionally, defaults to value in lib/RtFb.pm)
+    - In general: 
 
-    Restart the rt service after changing the above config file.
+      Adapt config variables in RT_SiteConfig_d_Feedback.pm.dist to your local
+      requirements and copy this file to $RTHOME/etc/RT_SiteConfig.d/Feedback.pm
+
+      Create a RtFb_FeedbackSecret config variable in Feedback.pm
+      (optionally, defaults to value in lib/RtFb.pm)
+
+    - At Swizzonic AG:
+
+      Use the *.prod amd *.test files from the repo/etc/RT/ directory.
+
+    Restart the RT service after changing the above config file.
 
   * Create Ticket Customfields:
 
@@ -65,9 +73,13 @@ SETUP
 
   * Install
 
-  ./configure --prefix=/opt/rtfb
+  ./configure --prefix=/opt/rtfb/releases/rtfb-VERSION
   make
-  make install
+  sudo make install
+
+  * At Swizzonic AG:
+
+    Change the link /opt/rtfb/prod to point to the current release.
 
 RUNNING
 -------

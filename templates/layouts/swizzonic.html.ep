@@ -282,9 +282,7 @@ ul#nav-below-menu li:hover a {
 
     <div id='footer' class='footer widgets-5'>
       <footer class='site-footer'>
-        <div class='footer-top'>
-          <!-- <a href="https://www.switchplus.ch">switchplus Homepage</a> -->
-        </div>
+        <div class='footer-top'></div>
         <div class='footer-btm'>
           <div class="footer_widget footer_widget_5">
             <div id="text-1" class="widget widget_text">

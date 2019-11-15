@@ -4,7 +4,7 @@ return 1;
 
 * Custom action commit code:
 
- use lib "/opt/rtfb/lib";
+use lib "/opt/rtfb/prod/lib";
 use Mojo::JSON qw(decode_json);
 
 my $Ticket   = $self->TicketObj;
@@ -16,6 +16,7 @@ my $data   = decode_json $subject;
 $RT::Logger->debug("UpdateUserLang($ticketId), subject=$subject, secret=$secret");
 
 return unless $data->{secret} and $data->{secret} eq $secret;
+
 my $email  = $data->{email};
 my $custId = $data->{customerId};
 
@@ -26,21 +27,26 @@ $language =~ s/-.*//; # remove sub code
 my $user = RT::User->new(RT->SystemUser);
 my ($ret, $msg) = $user->LoadByEmail($email);
 if (not $ret) { # user not found
-    $RT::Logger->error("Failed to load user by email $email: $msg");
-    return;
+    my ($ret, $msg) = $user->Create(EmailAddress => $email);
+    if (not $ret) {
+        $RT::Logger->error("Failed to create user with email $email: $msg");
+        return;
+    }
+    $RT::Logger->info("Created user with email $email");
 }
 
-if ($language ne $user->Lang) {
+my $userLang = $user->Lang;
+if (not $userLang or $language ne $userLang) {
     my ($ret, $msg) = $user->SetLang($language);
     if ($ret) {
-        $RT::Logger->debug("Language set for $custId: $language");
+        $RT::Logger->info("Language set for $custId: $language");
     }
     else {
         $RT::Logger->error("Failed to set lang=$language on email=$email: $msg");
     }
 }
 else {
-    $RT::Logger->debug("Language already ok");
+    $RT::Logger->info("Language already ok");
 }
 $Ticket->SetStatus('Resolved');
 

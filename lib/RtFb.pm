@@ -155,32 +155,3 @@ S<Fritz Zaucker E<lt>fritz.zaucker@oetiker.chE<gt>>
 
 =cut
 
-__DATA__
-
-@@ setup.sql
-
--- 1 up
-
-CREATE TABLE ord (
-    ord_id    INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    ord_product TEXT NOT NULL,
-    ord_count TEXT NOT NULL,
-    ord_first_name TEXT NOT NULL,
-    ord_last_name TEXT NOT NULL,
-    ord_street TEXT NOT NULL,
-    ord_zip TEXT NOT NULL,
-    ord_country TEXT NOT NULL,
-    ord_company TEXT,
-    ord_town TEXT NOT NULL,
-    ord_email TEXT NOT NULL,
-    ord_delivery TEXT NOT NULL,
-    ord_timestamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    ord_amount DECIMAL(10,2) NOT NULL,
-    ord_orgs TEXT NOT NULL,
-    ord_meta TEXT NOT NULL,
-    ord_seller TEXT NOT NULL
-);
-
--- 1 down
-
-DROP TABLE ord;

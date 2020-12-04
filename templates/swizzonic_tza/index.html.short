@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<head>
+  <style>@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');</style>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="./css/custom.css" type="text/css" media="all">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body class="container">
+
+  <div id="header">
+    <a><img class="logo" src="./logo_splus-swizzonic-1.gif" alt="switchplus.ch"></a>
+  </div>
+
+  <div id="blackbox"></div> <!--schwarzer balken-->
+
+  <div id="main" class="container">
+    <div class="col">
+      Ticket 703858: (test zwei)
+    </div>
+    <div class="col frage">
+      <b>Wie zufrieden waren Sie mit der Antwort unseres Mitarbeiters?</b>
+    </div>
+    <div class="emojis container">
+      <div class="row">
+	<div class="col-12 col-sm-6 col-md-3 auswahlbox">
+	  <!-- teilweise kopie aus ursprungsdatei (styling in css übertragen)-->
+	  <figure>
+	    <input name="feedback" type="radio" value="happy" checked="">
+	    <img id="happy" src="data:image/png;base64,
+				 iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
+				 SpRS+v8BeCedwvsRT+4AAAAASUVORK5CYII=">
+	    <figcaption>Sehr zufrieden</figcaption>
+	  </figure>
+	  <!-- ende kopie -->
+	</div>
+	<div class="col-12 col-sm-6 col-md-3 auswahlbox">
+	  <!-- teilweise kopie aus ursprungsdatei (styling in css übertragen)-->
+	  <figure>
+	    <input name="feedback" type="radio" value="partiallyHappy">
+	    <img id="partiallyHappy" src="data:image/png;base64,
+					  iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
+					  ACiUIAcAUChBDgCgUIIcAECJUkr/P9pGCdQnH+ArAAAAAElFTkSuQmCC">
+	    <figcaption>Zufrieden</figcaption>
+	  </figure>
+	  <!-- ende kopie -->
+	</div>
+	<div class="col-12 col-sm-6 col-md-3 auswahlbox">
+	  <!-- teilweise kopie aus ursprungsdatei (styling in css übertragen)-->
+	  <figure>
+	    <input name="feedback" type="radio" value="partiallyUnhappy">
+	    <img id="partiallyUnhappy" src="data:image/png;base64,
+					    iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
+					    U4IcAECmBDkAgEwJcgAAOSqK4v8D+gMVTvzDQKoAAAAASUVORK5CYII=">
+	    <figcaption>Bedingt zufrieden</figcaption>
+	  </figure>
+	  <!-- ende kopie -->
+	</div>
+	<div class="col-12 col-sm-6 col-md-3 auswahlbox">
+	  <!-- teilweise kopie aus ursprungsdatei (styling in css übertragen)-->
+	  <figure>
+	    <input name="feedback" type="radio" value="unhappy">
+	    <img id="unhappy" src="data:image/png;base64,
+				   iVBORw0KGgoAAAANSUhEUgAAAnIAAAJyCAYAAABALi2VAAAACXBIWXMAAC4jAAAuIwF4pT92AAAg
+				   qAU0OfyYAAAAAElFTkSuQmCC">
+	    <figcaption>Unzufrieden</figcaption>
+	  </figure>
+	  <!-- ende kopie -->
+	</div>
+      </div>
+    </div>
+    <div class="col-12 input-field">
+      <label for="textarea1">Falls Sie noch weitere Anmerkungen haben, können Sie diese hier anbringen.<br></label>
+      <textarea rows="5" class="col-12" name="comment" id="textarea1" placeholder="Ihr Kommentar">Das war ein super service</textarea>
+    </div>
+  </div>
+  <div class="col text-center">
+    <button id="submit_feedback" type="submit" name="action" class="submit">Abschicken</button>
+  </div>
+</div>
+
+<div id="blackbox"></div> <!--schwarzer balken-->
+
+<!-- footer -->
+<div id="footer">
+  © 2019 Swizzonic AG
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

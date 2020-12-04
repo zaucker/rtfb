@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+  <style>@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');</style>
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" media="all">
+  <link rel="stylesheet" href="./css/custom.css" type="text/css" media="all">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body class="container">
+
+  <div id="header">
+    <a><img class="logo" src="./logo_splus-swizzonic-1.gif" alt="swizzonic.ch"></a>
+  </div>
+
+  <div id="blackbox"></div> <!--schwarzer balken-->
+
+  <div id="main" class="container">
+    <%= content %>
+  </div>
+
+  <div id="blackbox"></div> <!--schwarzer balken-->
+
+  <!-- footer -->
+  <div id="footer">
+    © 2020 Swizzonic AG
+  </div>
+
+
+</body>
+<script type="text/javascript">
+  function listener() {
+      if (prev != null) {
+          document.getElementById(prev.value).width=50;
+      }
+      document.getElementById(this.value).width=75;
+      if (prev == rad[0]) {
+          document.getElementById('commentDiv').style.display = 'block';
+          document.getElementById('submit_feedback').style.display = 'block';
+          document.getElementById('google_review).style.display = 'none';
+      }
+      else {
+          document.getElementById('commentDiv').style.display = 'none;
+          document.getElementById('submit_feedback').style.display = 'none;
+          document.getElementById('google_review).style.display = 'block';
+      }
+      document.getElementById(this.value).width=75;
+      prev = this;
+  }
+  var prev, google, rad = document.forms.feedbackForm.elements.feedback;
+  for (var i = 0; i < rad.length; i++) {
+      rad[i].addEventListener('click', listener);
+      if (rad[i].checked) {
+            prev = rad[i];
+      }
+  }
+  document.getElementById('google_review').onclick = function () {
+      var url = "https://www.google.com/search?authuser=1&sxsrf=ALeKk03OOTrvXMcT46Jv_FTBA66WC_mgLQ%3A1603959329245&ei=IXqaX62mDsGUkgXQ_ayADg&q=Swizzonic&oq=Swizzonic&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BAgAEEM6CAgAELEDEIMBOgUIABCxAzoECC4QQzoHCC4QQxCTAjoECC4QClDZZVisbmDRb2gBcAB4AIABfYgBpwWSAQM4LjGYAQCgAQGqAQdnd3Mtd2l6yAEIwAEB&sclient=psy-ab&ved=0ahUKEwjturaQrtnsAhVBiqQKHdA-C-AQ4dUDCAw&uact=5#lrd=0x479aa0a819aff587:0x5ac19ccfe249bb6e,3";
+      window.open(url,'popUpWindow','height=400,width=600,left=10,top=10,,scrollbars=yes,menubar=no');
+      return false;
+//      location.href = url;
+  }                      
+</script>
+</html>

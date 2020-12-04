@@ -1,0 +1,73 @@
+body{
+font-family: 'Source Sans Pro', sans-serif;
+}
+
+div{
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.submit{
+  background-color:#000!important;
+  color: #fff!important;
+  border-radius: 0;
+  font-weight: 300;
+  padding: 0.75em!important;
+}
+
+div.auswahlbox{
+  margin: 0;
+  vertical-align: bottom;
+}
+
+.input-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type=radio]:checked + label>label {
+  border: 2px solid #000;
+}
+
+/* Stuff after this is only to make things more pretty */
+input[type=radio] + label>img {
+  width:  50px;
+  height: 50px;
+  transition: 100ms all;
+}
+
+input[type=radio]:checked + label>img {
+  transform: scale(1.75, 1.75);
+}
+
+input[type=radio]:hover + label>img {
+  transform: scale(1.75, 1.75);
+  opacity: 50%;
+}
+
+.emojis{
+    text-align:center;
+}
+
+#blackbox{
+  background-color: black;
+  min-height: 8px;
+}
+
+#footer{
+  text-align: center;
+}
+
+@media (min-width: 556px) {
+  #blackbox{
+    min-height: 18px
+  }
+}

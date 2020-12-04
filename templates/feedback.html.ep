@@ -3,54 +3,47 @@
 
 % my $t = $templateText;
 %
-<div class="container">
-  <div class="row">
-    <div class="col s12">
-      <br>
-        <p class="flow-text"><%= $t->{ticket}{$lang} %>&nbsp;<%= $ticketId %>: (<%= $subject %>)<br><br>
-           <b><%= $t->{question}{$lang} %></b>
-        </p>
+    <div class="col">
+      <%= $t->{ticket}{$lang} %>&nbsp;<%= $ticketId %>: (<%= $subject %>)
+    </div>
+    <div class="col frage">
+      <b><%= $t->{question}{$lang} %></b>
+    </div>
 
-      <form name="feedbackForm" id="orderform" action="<%= $feedbackUrl %>/save" method="post">
-        <input type="hidden" name="secret"   value="<%= "xyz$md5" %>">
-        <input type="hidden" name="ticketId" value="<%= $ticketId %>">
-        <div id="radio">
+  <div id="main" class="container">
+
+    <form name="feedbackForm" id="orderform" action="<%= $feedbackUrl %>/save" method="post">
+      <div class="emojis container">
+        <div class="row">
+          <input type="hidden" name="secret"   value="<%= "xyz$md5" %>">
+          <input type="hidden" name="ticketId" value="<%= $ticketId %>">
 % for my $s (@{$t->{selection}}) {
 %     my $checked = $s->{value} eq $feedback ? 'checked' : '';
 %     my $width   = $s->{value} eq $feedback ? 75 : 50;
-            <label>
-             <figure style="position: relative; display: inline-block;">
-               <input valign="middle" name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked %> />
-               <img id="<%= $s->{value} %>" valign="middle" src="<%= $s->{image} %>" width="<%= $width %>" height="<%= $width %>" />
-             <figcaption><%= $s->{text}{$lang} %></figcaption>
-             </figure>
-          </label>
+	  <div class="col-12 col-sm-6 col-md-3 auswahlbox">
+            <figure>
+              <input class="input-hidden" id="<%= $s->{value} %>" name="feedback" type="radio" value="<%= $s->{value} %>" <%= $checked %> />
+              <label for="<%= $s->{value} %>" >
+              <img src="<%= $s->{image} %>" />
+              <figcaption><%= $s->{text}{$lang} %></figcaption>
+              </label>
+            </figure>
+          </div>
 % }
         </div>
-        <div class="input-field">
-          <label for="textarea1" style="position: relative;"><%= $t->{details}{$lang} %><br/></label>
-          <textarea name="comment" id="textarea1" class="materialize-textarea" placeholder="<%= $t->{comment}{$lang} %>"><%= $comment %></textarea>
-        </div>
-        <button id="submit_feedback" type="submit" name="action" class="waves-effect waves-light btn" style="background-color:
-        #2f5671; padding-bottom: 1.75em!important;"><%= $t->{submit}{$lang} %></button>
-      </form>
-    </div>
+      </div>
+      <div class="col-12 input-field" id="commentDiv">
+        <label for="textarea1"><%= $t->{details}{$lang} %><br></label>
+        <textarea rows="5" class="col-12" name="comment" id="textarea1" placeholder="<%= $t->{comment}{$lang} %>"><%= $comment %></textarea>
+      </div>
+      <div class="col text-center">
+        <button id="submit_feedback" type="submit" name="action" class="submit"><%= $t->{submit}{$lang} %></button>
+        <button id="google_review" type="button" class="submit"><%= $t->{google}{$lang} %></button>
+      </div>
+    </form>
+<!--
+    <form id="google_review" target="_blank" action="https://www.google.com/search?authuser=1&sxsrf=ALeKk03OOTrvXMcT46Jv_FTBA66WC_mgLQ%3A1603959329245&ei=IXqaX62mDsGUkgXQ_ayADg&q=Swizzonic&oq=Swizzonic&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BAgAEEM6CAgAELEDEIMBOgUIABCxAzoECC4QQzoHCC4QQxCTAjoECC4QClDZZVisbmDRb2gBcAB4AIABfYgBpwWSAQM4LjGYAQCgAQGqAQdnd3Mtd2l6yAEIwAEB&sclient=psy-ab&ved=0ahUKEwjturaQrtnsAhVBiqQKHdA-C-AQ4dUDCAw&uact=5#lrd=0x479aa0a819aff587:0x5ac19ccfe249bb6e,3">
+        <button type="submit"><%= $t->{google}{$lang} %></button>
+    </form>
+-->
   </div>
-</div>
-
-<script type="text/javascript">
-  function listener() {
-      if (prev != null) {
-          document.getElementById(prev.value).width=50;
-      }
-      document.getElementById(this.value).width=75;
-      prev = this;
-  }
-  var prev, rad = document.forms.feedbackForm.elements.feedback;
-  for (var i = 0; i < rad.length; i++) {
-      rad[i].addEventListener('click', listener);
-      if (rad[i].checked) {
-            prev = rad[i];
-      }
-  }
-</script>

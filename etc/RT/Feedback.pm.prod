@@ -1090,6 +1090,12 @@ qAU0OfyYAAAAAElFTkSuQmCC
          fr => q{Si vous avez d'autres commentaires, vous pouvez les faire ici.},
          it => 'Se ha ulteriori commenti, può formularli nella seguente casella.',
      },
+     google => {
+         de => 'Auf Google bewerten',
+         en => 'Submit Google Review',
+         fr => 'Écrire un commentaire sur Google',
+         it => 'Invia una recensione su Google',
+     },
      submit => {
          de => 'Abschicken',
          en => 'Send',

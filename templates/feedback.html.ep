@@ -12,7 +12,7 @@
 
   <div id="main" class="container">
 
-    <form name="feedbackForm" id="orderform" action="<%= $feedbackUrl %>/save" method="post">
+    <form name="feedbackForm" id="feedbackForm" action="<%= $feedbackUrl %>/save" method="get">
       <div class="emojis container">
         <div class="row">
           <input type="hidden" name="secret"   value="<%= "xyz$md5" %>">
@@ -38,12 +38,7 @@
       </div>
       <div class="col text-center">
         <button id="submit_feedback" type="submit" name="action" class="submit"><%= $t->{submit}{$lang} %></button>
-        <button id="google_review" type="button" class="submit"><%= $t->{google}{$lang} %></button>
+        <button id="google_review"   type="submit" name="action" class="submit"><%= $t->{google}{$lang} %></button>
       </div>
     </form>
-<!--
-    <form id="google_review" target="_blank" action="https://www.google.com/search?authuser=1&sxsrf=ALeKk03OOTrvXMcT46Jv_FTBA66WC_mgLQ%3A1603959329245&ei=IXqaX62mDsGUkgXQ_ayADg&q=Swizzonic&oq=Swizzonic&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BAgAEEM6CAgAELEDEIMBOgUIABCxAzoECC4QQzoHCC4QQxCTAjoECC4QClDZZVisbmDRb2gBcAB4AIABfYgBpwWSAQM4LjGYAQCgAQGqAQdnd3Mtd2l6yAEIwAEB&sclient=psy-ab&ved=0ahUKEwjturaQrtnsAhVBiqQKHdA-C-AQ4dUDCAw&uact=5#lrd=0x479aa0a819aff587:0x5ac19ccfe249bb6e,3">
-        <button type="submit"><%= $t->{google}{$lang} %></button>
-    </form>
--->
   </div>

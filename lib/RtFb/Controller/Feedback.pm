@@ -88,6 +88,14 @@ sub save {
         ($ret, $msg) = $feedbackTicket->AddCustomFieldValue(Field => 'Feedback Kommentar', Value => $comment);
         $c->app->log->error("Set feedbackComment($ticketId)=$msg") unless $ret;
 
+        if ($feedback eq 'happy') {
+            # Temporary Redirect
+            $c->res->code(307);
+            $c->app->log->warn('Redirecting to Google');
+
+            my $googleUrl = 'https://www.google.com/search?authuser=1&sxsrf=ALeKk03OOTrvXMcT46Jv_FTBA66WC_mgLQ%3A1603959329245&ei=IXqaX62mDsGUkgXQ_ayADg&q=Swizzonic&oq=Swizzonic&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BAgAEEM6CAgAELEDEIMBOgUIABCxAzoECC4QQzoHCC4QQxCTAjoECC4QClDZZVisbmDRb2gBcAB4AIABfYgBpwWSAQM4LjGYAQCgAQGqAQdnd3Mtd2l6yAEIwAEB&sclient=psy-ab&ved=0ahUKEwjturaQrtnsAhVBiqQKHdA-C-AQ4dUDCAw&uact=5#lrd=0x479aa0a819aff587:0x5ac19ccfe249bb6e,3,,,';
+            $c->redirect_to($googleUrl);
+        }
         my $userLang = $c->_getUserLang($ticket);
         $c->stash('ticketId'     => $ticketId);
         $c->stash('subject'      => $subject);

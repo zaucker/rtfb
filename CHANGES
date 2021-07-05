@@ -1,3 +1,13 @@
+1.6.2 2021-07-05 Fritz Zaucker
+- Update Perl modules
+
+1.6.1 2020-12-15 Fritz Zaucker
+- Remove "ehemals switchplus AG" from Mail
+- Store empty review in DB for Google Review
+
+1.6.0 2020-12-04 Fritz Zaucker
+- Add Google Review (RT48963)
+
 1.4.2 2020-03-23 Fritz Zaucker
 - Update layout template to latest Swizzonic webpage
 

@@ -1424,10 +1424,10 @@ L2jkmmxDD+rnna6occai+ukVdY4z6JkxD43ps81m6J5a69ll0OfsVdI59aINXRtTUCp0OzTyslWy
 B21MFiNf5VW0Efs38DSWhY3/H9B7Ej2KbWNJAAAAAElFTkSuQmCC
 " alt="Swizzonic logo" />},
   organization => {
-    de => 'Swizzonic AG (ehemals switchplus ag)',
-    en => 'Swizzonic AG (formerly switchplus ag',
-    fr => 'Swizzonic AG (jadis switchplus ag)',
-    it => 'Swizzonic AG (in passato switchplus ag)',
+    de => 'Swizzonic AG',
+    en => 'Swizzonic AG',
+    fr => 'Swizzonic AG',
+    it => 'Swizzonic AG',
   },
   address => q{
     Limmatquai 112<br/>

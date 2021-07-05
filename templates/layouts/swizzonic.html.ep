@@ -44,7 +44,7 @@
         });
     }
 
-    document.getElementById('google_review').onclick = function () {
+//    document.getElementById('google_review').onclick = function () {
         var url = "https://www.google.com/search?authuser=1&sxsrf=ALeKk03OOTrvXMcT46Jv_FTBA66WC_mgLQ%3A1603959329245&ei=IXqaX62mDsGUkgXQ_ayADg&q=Swizzonic&oq=Swizzonic&gs_lcp=CgZwc3ktYWIQAzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAMgIIADICCAA6BwgAEEcQsAM6BAgAEEM6CAgAELEDEIMBOgUIABCxAzoECC4QQzoHCC4QQxCTAjoECC4QClDZZVisbmDRb2gBcAB4AIABfYgBpwWSAQM4LjGYAQCgAQGqAQdnd3Mtd2l6yAEIwAEB&sclient=psy-ab&ved=0ahUKEwjturaQrtnsAhVBiqQKHdA-C-AQ4dUDCAw&uact=5#lrd=0x479aa0a819aff587:0x5ac19ccfe249bb6e,3";
 
 	// popup
@@ -54,10 +54,13 @@
         // window.open(url, '_blank');
 
 	// same tab/window (chosen by Massimo)
-         window.open(url, '_self');
- 
-        return false;
-    }                      
+//         window.open(url, '_self');
+
+        // also submit the form
+//        document.feedbackForm.submit();
+
+//        return false;
+//    }
 
     window.onload = function() {
         if (rad[0].checked) {

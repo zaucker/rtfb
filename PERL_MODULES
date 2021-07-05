@@ -1,8 +1,8 @@
-Data::Processor@1.0.2
+Data::Processor
 IO::Socket::SSL
-Mojolicious@8.26
-Mojolicious::Plugin::OpenAPI@2.18
-Mojo::SQLite@3.003
+Mojolicious
+Mojolicious::Plugin::OpenAPI
+Mojo::SQLite
 Test::Mojo
 Test::NoTabs
 YAML::XS
